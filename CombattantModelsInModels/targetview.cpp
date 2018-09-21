@@ -22,7 +22,6 @@ void
 cTargetView::ShowTarget( cCombattantModel* iCombattant )
 {
     // The combattant model and the mapper
-    delete  mMappy->model();
     mMappy->setModel( iCombattant );
     mMappy->clearMapping();
     mMappy->addMapping( ui.lineEdit, 0 );
