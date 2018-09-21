@@ -33,7 +33,6 @@ cCombattantListModel::BuildData()
 cCombattantModel*
 cCombattantListModel::CombattantModelAtIndex( const QModelIndex & iIndex )
 {
-    auto modelNode = dynamic_cast< cDataItemModel* >( mRootItem->ChildAtIndex( iIndex.row() ) );
-    return  dynamic_cast< cCombattantModel* >( modelNode->mModel );
+    return  dynamic_cast< cCombattantModel* >( ExtractModelFromIndex( iIndex ) );
 }
 

@@ -17,8 +17,6 @@
     <ClInclude Include="cDataItem.h" />
     <ClInclude Include="cDataItemCombattant.h" />
     <ClInclude Include="cDataItemModel.h" />
-    <ClInclude Include="cDataItemModelCombattant.h" />
-    <ClInclude Include="cDataItemModelWeapon.h" />
     <ClInclude Include="cDataItemWeapon.h" />
     <ClInclude Include="cModelBase.h" />
     <ClInclude Include="cWeaponModel.h" />

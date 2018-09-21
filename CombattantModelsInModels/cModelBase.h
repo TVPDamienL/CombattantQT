@@ -33,12 +33,13 @@ public:
     virtual  Qt::ItemFlags  flags( const QModelIndex& iIndex )                                                      const   override;
 
 public:
-    virtual     void            BuildData();
+    virtual     void        BuildData();
 
-    cDataItemModel*             AddModelNode( QAbstractItemModel* iModel, cDataItem* iParent );
-    cDataItem*                  AddDataNode( cDataItem* iParent );
-                cDataItem*      ExtractDataItemFromIndex( const QModelIndex& iIndex ) const;
-                void            ForceFullRefresh();
+    cDataItemModel*         AddModelNode( QAbstractItemModel* iModel, cDataItem* iParent );
+    cDataItem*              AddDataNode( cDataItem* iParent );
+    cDataItem*              ExtractDataItemFromIndex( const QModelIndex& iIndex ) const;
+    QAbstractItemModel*     ExtractModelFromIndex( const QModelIndex& iIndex ) const;
+    void                    ForceFullRefresh();
 
 
 protected:

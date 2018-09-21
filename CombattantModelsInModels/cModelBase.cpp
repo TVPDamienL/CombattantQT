@@ -175,6 +175,17 @@ cModelBase::ExtractDataItemFromIndex( const QModelIndex & iIndex ) const
 }
 
 
+QAbstractItemModel*
+cModelBase::ExtractModelFromIndex( const QModelIndex & iIndex ) const
+{
+    auto modelNode = dynamic_cast< cDataItemModel* >( mRootItem->ChildAtIndex( iIndex.row() ) );
+    if( modelNode )
+        return  modelNode->mModel;
+
+    return  0;
+}
+
+
 void
 cModelBase::ForceFullRefresh()
 {

@@ -30,6 +30,5 @@ cDataItemModel::GetDataAtIndex( int iIndex )
 bool
 cDataItemModel::SetData( int iIndex, const QVariant & value )
 {
-    // This ?
     return  mModel->setData( mModel->index( 0, iIndex, QModelIndex() ), value );
 }

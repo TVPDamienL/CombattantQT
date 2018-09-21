@@ -19,7 +19,7 @@ public:
     virtual  bool       SetData( int iIndex, const QVariant &value ) override;
 
 
-public:
+public: // dirty quickcoding
     cWeapon* mWeapon;
 };
 
