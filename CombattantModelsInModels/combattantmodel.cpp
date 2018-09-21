@@ -3,7 +3,7 @@
 #include "combattant.h"
 #include "cDataItemCombattant.h"
 #include "cDataItemWeapon.h"
-#include "cDataItemModelWeapon.h"
+#include "cDataItemModel.h"
 #include "cWeaponModel.h"
 
 cCombattantModel::~cCombattantModel()
@@ -22,7 +22,7 @@ cCombattantModel::cCombattantModel( cCombattant* iCombattant, QObject* iParent )
 bool
 cCombattantModel::setData( const QModelIndex& iIndex, const QVariant& iData, int iRole )
 {
-    auto dataItem = dynamic_cast< cDataItemModelWeapon* >( ExtractDataItemFromIndex( iIndex ) );
+    auto dataItem = dynamic_cast< cDataItemModel* >( ExtractDataItemFromIndex( iIndex ) );
     if( dataItem )
     {
         mCombattant->CurrentWeapon( iData.toString().toStdString() );
@@ -47,7 +47,7 @@ cCombattantModel::BuildData()
     auto nameItem = new cDataItemCombattant( mCombattant, mRootItem );
     nameItem->AddData( "CombattantName" );
 
-    mTheWeaponModelNode= new cDataItemModelWeapon( new  cWeaponModel( mCombattant->CurrentWeapon() ), mRootItem );
+    mTheWeaponModelNode= new cDataItemModel( new  cWeaponModel( mCombattant->CurrentWeapon() ), mRootItem );
 
     auto shieldItem = new cDataItemCombattant( mCombattant, mRootItem );
     shieldItem->AddData( "CombattantShield" );
@@ -57,7 +57,7 @@ cCombattantModel::BuildData()
 cWeaponModel*
 cCombattantModel::WeaponModelAtIndex( const QModelIndex & iIndex )
 {
-    auto modelNode = dynamic_cast< cDataItemModelWeapon* >( mRootItem->ChildAtIndex( iIndex.row() ) );
+    auto modelNode = dynamic_cast< cDataItemModel* >( mRootItem->ChildAtIndex( iIndex.row() ) );
     return  dynamic_cast< cWeaponModel* >( modelNode->mModel );
 }
 

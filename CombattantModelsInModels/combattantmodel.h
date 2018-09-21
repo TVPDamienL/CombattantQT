@@ -3,7 +3,7 @@
 #include "cModelBase.h"
 
 class cCombattant;
-class cDataItemModelWeapon;
+class cDataItemModel;
 class cWeaponModel;
 
 class cCombattantModel :
@@ -25,6 +25,6 @@ public:
 
 public:
     cCombattant*            mCombattant;
-    cDataItemModelWeapon*   mTheWeaponModelNode;
+    cDataItemModel*         mTheWeaponModelNode;
 };
 

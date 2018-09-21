@@ -1,6 +1,7 @@
 #pragma once
 
-#include "cDataItemModelCombattant.h"
+#include "cDataItemModel.h"
+#include "cModelBase.h"
 
 #include <QAbstractItemModel>
 

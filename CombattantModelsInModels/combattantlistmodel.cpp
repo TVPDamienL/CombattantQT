@@ -26,14 +26,14 @@ cCombattantListModel::BuildData()
     mRootItem->AddData( "Value" );
 
     for( auto comb : mCombattantList )
-        new  cDataItemModelCombattant( new cCombattantModel( comb ), mRootItem );
+        new  cDataItemModel( new cCombattantModel( comb ), mRootItem );
 }
 
 
 cCombattantModel*
 cCombattantListModel::CombattantModelAtIndex( const QModelIndex & iIndex )
 {
-    auto modelNode = dynamic_cast< cDataItemModelCombattant* >( mRootItem->ChildAtIndex( iIndex.row() ) );
+    auto modelNode = dynamic_cast< cDataItemModel* >( mRootItem->ChildAtIndex( iIndex.row() ) );
     return  dynamic_cast< cCombattantModel* >( modelNode->mModel );
 }
 

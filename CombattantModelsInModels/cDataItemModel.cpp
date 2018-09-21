@@ -23,15 +23,13 @@ cDataItemModel::Type() const
 QVariant
 cDataItemModel::GetDataAtIndex( int iIndex )
 {
-    return  mModel->data( mModel->index( 0, 0, QModelIndex() ) );
+    return  mModel->data( mModel->index( 0, iIndex, QModelIndex() ) );
 }
 
 
 bool
 cDataItemModel::SetData( int iIndex, const QVariant & value )
 {
-    if( iIndex == 0 )
-        mModel->setData( mModel->index( 0, 0, QModelIndex() ), value );
-
-    return  tSuperClass::SetData( iIndex, value );
+    // This ?
+    return  mModel->setData( mModel->index( 0, iIndex, QModelIndex() ), value );
 }
