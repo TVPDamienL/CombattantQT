@@ -33,3 +33,6 @@
 
 # Visual studio
 .vs
+x64/
+CombattantModelsInModels/x64/
+*.user
