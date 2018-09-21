@@ -47,7 +47,7 @@ cCombattantModel::BuildData()
     auto nameItem = new cDataItemCombattant( mCombattant, mRootItem );
     nameItem->AddData( "CombattantName" );
 
-    mTheWeaponModelNode= new cDataItemModel( new  cWeaponModel( mCombattant->CurrentWeapon() ), mRootItem );
+    mTheWeaponModelNode = AddModelNode( new  cWeaponModel( mCombattant->CurrentWeapon() ), mRootItem );
 
     auto shieldItem = new cDataItemCombattant( mCombattant, mRootItem );
     shieldItem->AddData( "CombattantShield" );

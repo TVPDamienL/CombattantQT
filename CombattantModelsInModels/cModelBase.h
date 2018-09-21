@@ -5,6 +5,7 @@
 #include <QAbstractItemModel>
 
 class cCombattant;
+class cDataItemModel;
 
 class cModelBase :
     public QAbstractItemModel
@@ -33,7 +34,12 @@ public:
 
 public:
     virtual     void            BuildData();
+
+    cDataItemModel*             AddModelNode( QAbstractItemModel* iModel, cDataItem* iParent );
+    cDataItem*                  AddDataNode( cDataItem* iParent );
                 cDataItem*      ExtractDataItemFromIndex( const QModelIndex& iIndex ) const;
+                void            ForceFullRefresh();
+
 
 protected:
     cDataItem*  mRootItem;

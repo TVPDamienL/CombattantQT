@@ -1,6 +1,6 @@
 #include "cModelBase.h"
 
-
+#include "cDataItemModel.h"
 
 cModelBase::~cModelBase()
 {
@@ -145,6 +145,22 @@ cModelBase::BuildData()
 }
 
 
+cDataItemModel *
+cModelBase::AddModelNode( QAbstractItemModel * iModel, cDataItem * iParent )
+{
+    auto newModelNode = new cDataItemModel( iModel, iParent );
+    connect( iModel, &QAbstractItemModel::dataChanged, this, &cModelBase::ForceFullRefresh );
+    return  newModelNode;
+}
+
+
+cDataItem*
+cModelBase::AddDataNode( cDataItem * iParent )
+{
+    return  new cDataItem( iParent );
+}
+
+
 cDataItem*
 cModelBase::ExtractDataItemFromIndex( const QModelIndex & iIndex ) const
 {
@@ -156,5 +172,12 @@ cModelBase::ExtractDataItemFromIndex( const QModelIndex & iIndex ) const
         return  data;
 
     return  0;
+}
+
+
+void
+cModelBase::ForceFullRefresh()
+{
+    dataChanged( QModelIndex(), QModelIndex() );
 }
 
