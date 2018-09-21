@@ -55,9 +55,9 @@ cCombattantModel::BuildData()
 
 
 cWeaponModel*
-cCombattantModel::WeaponModelAtIndex( const QModelIndex & iIndex )
+cCombattantModel::WeaponModel()
 {
-    return  dynamic_cast< cWeaponModel* >( ExtractModelFromIndex( iIndex ) );
+    return  dynamic_cast< cWeaponModel* >( mTheWeaponModelNode->mModel );
 }
 
 

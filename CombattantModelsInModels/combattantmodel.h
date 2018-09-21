@@ -21,7 +21,7 @@ public:
     virtual  void           BuildData()                                                                                     override;
 
 public:
-    cWeaponModel*           WeaponModelAtIndex( const QModelIndex& iIndex );
+    cWeaponModel*           WeaponModel();
 
 public:
     cCombattant*            mCombattant;

@@ -31,7 +31,7 @@ cCombattantListModel::BuildData()
 
 
 cCombattantModel*
-cCombattantListModel::CombattantModelAtIndex( const QModelIndex & iIndex )
+cCombattantListModel::CombattantModelAtIndex( const QModelIndex& iIndex )
 {
     return  dynamic_cast< cCombattantModel* >( ExtractModelFromIndex( iIndex ) );
 }

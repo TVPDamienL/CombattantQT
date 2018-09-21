@@ -49,6 +49,6 @@ cCombattantView::ShowCombattant( cCombattantModel* iCombattant )
 void
 cCombattantView::RefreshWeapon()
 {
-    ui.widget->ShowWeapon( mCombattantModel->WeaponModelAtIndex( mCombattantModel->index( 1, 0, QModelIndex() ) ) );
+    ui.widget->ShowWeapon( mCombattantModel->WeaponModel() );
 }
 

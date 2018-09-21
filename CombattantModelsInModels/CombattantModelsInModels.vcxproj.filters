@@ -37,6 +37,15 @@
     <Filter Include="Source Files\Views">
       <UniqueIdentifier>{95ddd0b8-b82f-4dd9-9c5d-32c05ab2e5ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\DataItem">
+      <UniqueIdentifier>{4424b156-11c5-4e0d-a6ee-5b3daed20e3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Models">
+      <UniqueIdentifier>{a3cabdd0-e17f-411b-b7ab-c8eaa7240a47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Views">
+      <UniqueIdentifier>{c85f7746-31bf-4e4b-91f1-356c7a476eb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="cMainWindow.qrc">
@@ -44,41 +53,41 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetview.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="combattant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="combattantlistmodel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="combattantmodel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="combattantview.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="cDataItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cDataItemModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cWeaponModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cModelBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cDataItemWeapon.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\DataItem</Filter>
     </ClInclude>
     <ClInclude Include="cDataItemCombattant.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\DataItem</Filter>
+    </ClInclude>
+    <ClInclude Include="cDataItemModel.h">
+      <Filter>Header Files\DataItem</Filter>
+    </ClInclude>
+    <ClInclude Include="cDataItemWeapon.h">
+      <Filter>Header Files\DataItem</Filter>
+    </ClInclude>
+    <ClInclude Include="cModelBase.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="combattantlistmodel.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="combattantmodel.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="cWeaponModel.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="combattantview.h">
+      <Filter>Header Files\Views</Filter>
     </ClInclude>
     <ClInclude Include="cWeaponView.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="targetview.h">
+      <Filter>Header Files\Views</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

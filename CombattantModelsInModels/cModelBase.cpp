@@ -138,13 +138,6 @@ cModelBase::flags( const QModelIndex & iIndex ) const
 }
 
 
-void
-cModelBase::BuildData()
-{
-    // nothing
-}
-
-
 cDataItemModel *
 cModelBase::AddModelNode( QAbstractItemModel * iModel, cDataItem * iParent )
 {
@@ -178,7 +171,14 @@ cModelBase::ExtractDataItemFromIndex( const QModelIndex & iIndex ) const
 QAbstractItemModel*
 cModelBase::ExtractModelFromIndex( const QModelIndex & iIndex ) const
 {
-    auto modelNode = dynamic_cast< cDataItemModel* >( mRootItem->ChildAtIndex( iIndex.row() ) );
+    return  ExtractModelFromIndex( iIndex.row() );
+}
+
+
+QAbstractItemModel*
+cModelBase::ExtractModelFromIndex( int iIndex ) const
+{
+    auto modelNode = dynamic_cast< cDataItemModel* >( mRootItem->ChildAtIndex( iIndex ) );
     if( modelNode )
         return  modelNode->mModel;
 
