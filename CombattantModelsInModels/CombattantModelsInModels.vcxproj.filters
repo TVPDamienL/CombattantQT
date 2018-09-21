@@ -131,9 +131,15 @@
     <ClCompile Include="targetview.cpp">
       <Filter>Source Files\Views</Filter>
     </ClCompile>
+    <ClCompile Include="proxytargetmodel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="cMainWindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="proxytargetmodel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

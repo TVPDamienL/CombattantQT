@@ -26,6 +26,7 @@
     <ClInclude Include="combattantlistmodel.h" />
     <ClInclude Include="combattantmodel.h" />
     <ClInclude Include="combattantview.h" />
+    <QtMoc Include="proxytargetmodel.h" />
     <ClInclude Include="targetview.h" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +43,7 @@
     <ClCompile Include="cWeaponModel.cpp" />
     <ClCompile Include="cWeaponView.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="proxytargetmodel.cpp" />
     <ClCompile Include="targetview.cpp" />
   </ItemGroup>
   <ItemGroup>

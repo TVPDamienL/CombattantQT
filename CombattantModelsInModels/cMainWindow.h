@@ -3,8 +3,9 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_cMainWindow.h"
 
-class cCombattants;
+class cCombattant;
 class cCombattantListModel;
+class cProxyTargetModel;
 
 class cMainWindow :
     public QMainWindow
@@ -25,5 +26,6 @@ private:
     Ui::cMainWindowClass ui;
     QVector< cCombattant* > mCombattants;
     cCombattantListModel*   mCombattantListModel;
+    cProxyTargetModel*      mProxyTargetModel;
 
 };

@@ -5,7 +5,7 @@
 
 #include "ui_TargetView.h"
 
-class cCombattant;
+class cCombattantModel;
 
 class cTargetView :
     public QWidget
@@ -18,11 +18,11 @@ public:
     cTargetView( QWidget* iParent = 0 );
 
 public slots:
-    void  ShowTarget( cCombattant* iCombattant);
+    void  ShowTarget( cCombattantModel* iCombattant);
 
 private:
     Ui::TargetView ui;
-    cCombattant*        mCombattant;
+    cCombattantModel*   mCombattantModel;
     QDataWidgetMapper*  mMappy;
 };
 

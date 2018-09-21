@@ -3,6 +3,8 @@
 #include "combattantlistmodel.h"
 #include "combattant.h"
 
+#include "proxytargetmodel.h"
+
 #include <QItemSelectionModel>
 
 cMainWindow::cMainWindow(QWidget *parent)
@@ -24,16 +26,16 @@ cMainWindow::BuildStuff()
     }
 
     mCombattantListModel    = new cCombattantListModel( mCombattants );
-    //mProxyTargetModel       = new cProxyTargetModel();
-    //mProxyTargetModel->setSourceModel( mCombattantListModel );
+    mProxyTargetModel       = new cProxyTargetModel();
+    mProxyTargetModel->setSourceModel( mCombattantListModel );
 
     ui.listCombattants->setModel( mCombattantListModel );
-    //ui.tableTargets->setModel( mProxyTargetModel );
+    ui.listTargets->setModel( mProxyTargetModel );
 
     connect( ui.listCombattants->selectionModel(), &QItemSelectionModel::currentChanged, this, &cMainWindow::CurrentCombattantChanged );
-    //connect( ui.tableTargets->selectionModel(), &QItemSelectionModel::currentChanged, this, &cMainWindow::CurrentTargetChanged );
+    connect( ui.listTargets->selectionModel(), &QItemSelectionModel::currentChanged, this, &cMainWindow::CurrentTargetChanged );
 
-    //connect( ui.listCombattants->selectionModel(), &QItemSelectionModel::currentChanged, mProxyTargetModel, &cProxyTargetModel::CurrentSelectedCombattant );
+    connect( ui.listCombattants->selectionModel(), &QItemSelectionModel::currentChanged, mProxyTargetModel, &cProxyTargetModel::CurrentSelectedCombattant );
 }
 
 
@@ -47,6 +49,7 @@ cMainWindow::CurrentCombattantChanged( const QModelIndex & iCurrent, const QMode
 void
 cMainWindow::CurrentTargetChanged( const QModelIndex & iCurrent, const QModelIndex & iPrevious )
 {
- }
+    ui.TargetView->ShowTarget( mCombattantListModel->CombattantModelAtIndex( mProxyTargetModel->mapToSource( iCurrent ) ) );
+}
 
 

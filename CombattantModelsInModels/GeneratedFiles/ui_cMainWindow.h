@@ -13,13 +13,11 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
-#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTableView>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -42,7 +40,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
     QLabel *label;
-    QTableView *tableTargets;
+    QListView *listTargets;
     cTargetView *TargetView;
     QFrame *line;
     QLabel *label_3;
@@ -112,16 +110,10 @@ public:
 
         verticalLayout->addWidget(label);
 
-        tableTargets = new QTableView(centralWidget);
-        tableTargets->setObjectName(QStringLiteral("tableTargets"));
-        tableTargets->setShowGrid(false);
-        tableTargets->setGridStyle(Qt::NoPen);
-        tableTargets->setCornerButtonEnabled(false);
-        tableTargets->horizontalHeader()->setDefaultSectionSize(200);
-        tableTargets->horizontalHeader()->setStretchLastSection(true);
-        tableTargets->verticalHeader()->setVisible(false);
+        listTargets = new QListView(centralWidget);
+        listTargets->setObjectName(QStringLiteral("listTargets"));
 
-        verticalLayout->addWidget(tableTargets);
+        verticalLayout->addWidget(listTargets);
 
 
         horizontalLayout->addLayout(verticalLayout);

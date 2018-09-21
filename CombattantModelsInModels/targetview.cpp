@@ -19,14 +19,14 @@ cTargetView::cTargetView( QWidget* iParent ) :
 
 
 void
-cTargetView::ShowTarget( cCombattant* iCombattant )
+cTargetView::ShowTarget( cCombattantModel* iCombattant )
 {
     // The combattant model and the mapper
     delete  mMappy->model();
-    mMappy->setModel( new cCombattantModel( iCombattant ) );
+    mMappy->setModel( iCombattant );
     mMappy->clearMapping();
     mMappy->addMapping( ui.lineEdit, 0 );
-    mMappy->addMapping( ui.spinBox, 3 );
+    mMappy->addMapping( ui.spinBox, 2 );
 
     mMappy->toFirst();
 }
