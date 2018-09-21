@@ -2,6 +2,8 @@
 
 #include "cDataItemModel.h"
 
+#include <QObject>
+
 cModelBase::~cModelBase()
 {
 }
@@ -25,8 +27,11 @@ cModelBase::index( int iRow, int iColumn, const QModelIndex & iParent ) const
     if( childNode )
         return  createIndex( iRow, iColumn, childNode );
 
-    return  QModelIndex();
+    auto  itemAsDataModel = dynamic_cast< cDataItemModel* >( theNode );
+    if( itemAsDataModel && mModelExposedMap[ itemAsDataModel ] )
+        return  itemAsDataModel->mModel->index( iRow, iColumn, QModelIndex() );
 
+    return  QModelIndex();
 }
 
 
@@ -38,10 +43,18 @@ cModelBase::parent( const QModelIndex & iParent ) const
 
     cDataItem* theNode = ExtractDataItemFromIndex( iParent );
     cDataItem* theParent = theNode->Parent();
-
     if( theParent == mRootItem )
-        return  QModelIndex();
+    {
+        auto  parentAsModel = dynamic_cast< cModelBase* >( QObject::parent() );
+        if( parentAsModel )
+        {
+            cDataItemModel* parentModelNode = _FindDataItemModelFromModel( this );
+            if( parentModelNode )
+                return  createIndex( parentModelNode->IndexInParent(), 0, parentModelNode );
+        }
 
+        return  QModelIndex();
+    }
 
     return  createIndex( theNode->IndexInParent(), 0, theParent );
 }
@@ -142,7 +155,11 @@ cDataItemModel *
 cModelBase::AddModelNode( QAbstractItemModel * iModel, cDataItem * iParent )
 {
     auto newModelNode = new cDataItemModel( iModel, iParent );
+    mModelExposedMap[ newModelNode ] = false;
+    iModel->setParent( this );
+
     connect( iModel, &QAbstractItemModel::dataChanged, this, &cModelBase::ForceFullRefresh );
+
     return  newModelNode;
 }
 
@@ -190,5 +207,12 @@ void
 cModelBase::ForceFullRefresh()
 {
     dataChanged( QModelIndex(), QModelIndex() );
+}
+
+
+cDataItemModel*
+cModelBase::_FindDataItemModelFromModel( const QAbstractItemModel * iModel ) const
+{
+    return  0;//TODO
 }
 

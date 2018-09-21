@@ -19,8 +19,8 @@ public:
 
 public:
     // ModelIndex functions
-    virtual  QModelIndex    index( int iRow, int iColumn, const  QModelIndex& iParent = QModelIndex() )             const   override;
-    virtual  QModelIndex    parent( const  QModelIndex& iParent = QModelIndex() )                                   const   override;
+    virtual  QModelIndex    index( int iRow, int iColumn, const  QModelIndex& iParent )                             const   override;
+    virtual  QModelIndex    parent( const  QModelIndex& iParent )                                                   const   override;
 
     // Read
     virtual  int            rowCount( const QModelIndex& iIndex )                                                   const   override;
@@ -43,6 +43,11 @@ public:
     void                    ForceFullRefresh();
 
 
+private:
+    cDataItemModel*         _FindDataItemModelFromModel( const QAbstractItemModel* iModel ) const;
+
+
 protected:
     cDataItem*  mRootItem;
+    QMap< cDataItemModel*, bool > mModelExposedMap; // Does a model create a node in the tree and expose itself as well, or not
 };

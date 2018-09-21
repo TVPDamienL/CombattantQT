@@ -30,6 +30,8 @@ public:
     virtual  bool SetData( int iIndex, const QVariant &value );
     virtual  bool IsEditable( int iIndex ) const;
 
+    const cDataItem*  FindDataItem( const cDataItem* iItem ) const;
+
 protected:
     cDataItem*                  mParent = 0;
     std::vector< cDataItem* >   mChildren;

@@ -68,6 +68,9 @@ cDataItem::Type() const
 cDataItem*
 cDataItem::ChildAtIndex( int iIndex )
 {
+    if( iIndex < 0 || iIndex >= mChildren.size() )
+        return  0;
+
     return  mChildren[ iIndex ];
 }
 
@@ -116,5 +119,22 @@ bool
 cDataItem::IsEditable( int iIndex ) const
 {
     return  false;
+}
+
+
+const cDataItem*
+cDataItem::FindDataItem( const cDataItem * iItem ) const
+{
+    for( auto child : mChildren )
+    {
+        const cDataItem* found = FindDataItem( iItem );
+        if( found )
+            return  found;
+    }
+
+    if( iItem == this )
+        return  this;
+
+    return  0;
 }
 
