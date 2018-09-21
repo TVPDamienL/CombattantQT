@@ -34,8 +34,6 @@
     <ClCompile Include="cDataItem.cpp" />
     <ClCompile Include="cDataItemCombattant.cpp" />
     <ClCompile Include="cDataItemModel.cpp" />
-    <ClCompile Include="cDataItemModelCombattant.cpp" />
-    <ClCompile Include="cDataItemModelWeapon.cpp" />
     <ClCompile Include="cDataItemWeapon.cpp" />
     <ClCompile Include="cMainWindow.cpp" />
     <ClCompile Include="cModelBase.cpp" />

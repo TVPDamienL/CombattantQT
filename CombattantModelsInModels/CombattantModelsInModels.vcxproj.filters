@@ -104,9 +104,6 @@
     <ClCompile Include="cDataItemModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cDataItemModelCombattant.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cWeaponModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -117,9 +114,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cDataItemCombattant.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cDataItemModelWeapon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cWeaponView.cpp">

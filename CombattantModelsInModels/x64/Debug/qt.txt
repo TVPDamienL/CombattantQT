@@ -1,1 +1,0 @@
-Uic'ing cMainWindow.ui...;D:\Qt\5.11.0\msvc2017_64\bin\uic.exe;"C:\Users\Ahmed\work\Tests\CombattantsQT\CombattantsQT\CombattantModelsInModels\cMainWindow.ui" -o ".\GeneratedFiles\ui_cMainWindow.h"

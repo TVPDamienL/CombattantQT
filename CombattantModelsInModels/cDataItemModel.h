@@ -15,7 +15,9 @@ public:
     cDataItemModel( QAbstractItemModel* iModel, cDataItem* iParent = 0 );
 
 public:
-    virtual  std::string  Type()  const  override;
+    virtual     std::string     Type()                                          const   override;
+    virtual     QVariant        GetDataAtIndex( int iIndex )                            override;
+    virtual     bool            SetData( int iIndex, const QVariant & value )           override;
 
 public: // dirty quickcoding
     QAbstractItemModel* mModel;
