@@ -2,8 +2,6 @@
 
 #include "cDataItemModel.h"
 
-#include <QObject>
-
 cModelBase::~cModelBase()
 {
 }
