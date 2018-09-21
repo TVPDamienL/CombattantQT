@@ -34,5 +34,7 @@
 # Visual studio
 .vs
 x64/
+CombattantsQT/x64/
 CombattantModelsInModels/x64/
 *.user
+*.tlog
