@@ -30,6 +30,7 @@ cMainWindow::BuildStuff()
     mProxyTargetModel->setSourceModel( mCombattantListModel );
 
     ui.listCombattants->setModel( mCombattantListModel );
+    ui.treeView->setModel( mCombattantListModel );
     ui.listTargets->setModel( mProxyTargetModel );
 
     connect( ui.listCombattants->selectionModel(), &QItemSelectionModel::currentChanged, this, &cMainWindow::CurrentCombattantChanged );

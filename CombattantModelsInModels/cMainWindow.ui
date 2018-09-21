@@ -35,6 +35,9 @@
         <item>
          <widget class="QListView" name="listCombattants"/>
         </item>
+        <item>
+         <widget class="QTreeView" name="treeView"/>
+        </item>
        </layout>
       </item>
       <item>

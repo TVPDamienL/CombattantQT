@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QListView>
 #include <QtWidgets/QMainWindow>
@@ -20,6 +21,7 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QTreeView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "combattantview.h"
@@ -36,6 +38,7 @@ public:
     QVBoxLayout *verticalLayout_2;
     QLabel *label_2;
     QListView *listCombattants;
+    QTreeView *treeView;
     cCombattantView *CombattantView;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
@@ -80,6 +83,11 @@ public:
         listCombattants->setObjectName(QStringLiteral("listCombattants"));
 
         verticalLayout_2->addWidget(listCombattants);
+
+        treeView = new QTreeView(centralWidget);
+        treeView->setObjectName(QStringLiteral("treeView"));
+
+        verticalLayout_2->addWidget(treeView);
 
 
         horizontalLayout_2->addLayout(verticalLayout_2);
