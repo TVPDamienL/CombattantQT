@@ -1,0 +1,5 @@
+TargetView.ui|"C:\Users\Ahmed\work\Tests\CombattantsQT\CombattantsQT\CombattantModelsInModels\TargetView.ui" -o ".\GeneratedFiles\ui_TargetView.h"
+cMainWindow.h|"C:\Users\Ahmed\work\Tests\CombattantsQT\CombattantsQT\CombattantModelsInModels\cMainWindow.h" -o ".\GeneratedFiles\Debug\moc_cMainWindow.cpp" "-I.\GeneratedFiles" "-I." "-ID:\Qt\5.11.0\msvc2017_64\include" "-I.\GeneratedFiles\Debug\." "-ID:\Qt\5.11.0\msvc2017_64\include\QtCore" "-ID:\Qt\5.11.0\msvc2017_64\include\QtGui" "-ID:\Qt\5.11.0\msvc2017_64\include\QtANGLE" "-ID:\Qt\5.11.0\msvc2017_64\include\QtWidgets" -DUNICODE -D_UNICODE -DWIN32 -DWIN64 -DQT_DLL -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+CombattantView.ui|"C:\Users\Ahmed\work\Tests\CombattantsQT\CombattantsQT\CombattantModelsInModels\CombattantView.ui" -o ".\GeneratedFiles\ui_CombattantView.h"
+WeaponView.ui|"C:\Users\Ahmed\work\Tests\CombattantsQT\CombattantsQT\CombattantModelsInModels\WeaponView.ui" -o ".\GeneratedFiles\ui_WeaponView.h"
+cMainWindow.ui|"C:\Users\Ahmed\work\Tests\CombattantsQT\CombattantsQT\CombattantModelsInModels\cMainWindow.ui" -o ".\GeneratedFiles\ui_cMainWindow.h"
