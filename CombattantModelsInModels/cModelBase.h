@@ -38,14 +38,13 @@ public:
     cDataItemModel*         AddModelNode( QAbstractItemModel* iModel, cDataItem* iParent );
     cDataItem*              AddDataNode( cDataItem* iParent );
     cDataItem*              ExtractDataItemFromIndex( const QModelIndex& iIndex ) const;
+    QModelIndex             DataItemToModelIndex( cDataItem* iDataItem ) const;
     QAbstractItemModel*     ExtractModelFromIndex( const QModelIndex& iIndex ) const;
     QAbstractItemModel*     ExtractModelFromIndex( int iIndex ) const;
     void                    ForceFullRefresh();
 
-
 private:
-    cDataItemModel*         _FindDataItemModelFromModel( const QAbstractItemModel* iModel ) const;
-
+    cDataItemModel*         _FindDataItemModelFromModel( const cModelBase* iModel );
 
 protected:
     cDataItem*  mRootItem;

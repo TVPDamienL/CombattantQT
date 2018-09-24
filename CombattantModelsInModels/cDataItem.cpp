@@ -31,6 +31,13 @@ cDataItem::Parent()
 }
 
 
+const cDataItem*
+cDataItem::Parent() const
+{
+    return  mParent;
+}
+
+
 int
 cDataItem::IndexInParent() const
 {
@@ -67,6 +74,16 @@ cDataItem::Type() const
 
 cDataItem*
 cDataItem::ChildAtIndex( int iIndex )
+{
+    if( iIndex < 0 || iIndex >= mChildren.size() )
+        return  0;
+
+    return  mChildren[ iIndex ];
+}
+
+
+const cDataItem*
+cDataItem::ChildAtIndex( int iIndex ) const
 {
     if( iIndex < 0 || iIndex >= mChildren.size() )
         return  0;

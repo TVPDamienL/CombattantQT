@@ -22,12 +22,15 @@ cModelBase::index( int iRow, int iColumn, const QModelIndex & iParent ) const
 
     cDataItem* theNode = ExtractDataItemFromIndex( iParent );
     cDataItem* childNode = theNode->ChildAtIndex( iRow );
-    if( childNode )
-        return  createIndex( iRow, iColumn, childNode );
 
+    // If the child node is a model node, and that model is exposed, we go to the model
     auto  itemAsDataModel = dynamic_cast< cDataItemModel* >( theNode );
     if( itemAsDataModel && mModelExposedMap[ itemAsDataModel ] )
         return  itemAsDataModel->mModel->index( iRow, iColumn, QModelIndex() );
+
+    // Otherwise, we use the usual children
+    if( childNode )
+        return  createIndex( iRow, iColumn, childNode );
 
     return  QModelIndex();
 }
@@ -46,9 +49,9 @@ cModelBase::parent( const QModelIndex & iParent ) const
         auto  parentAsModel = dynamic_cast< cModelBase* >( QObject::parent() );
         if( parentAsModel )
         {
-            cDataItemModel* parentModelNode = _FindDataItemModelFromModel( this );
+            cDataItemModel* parentModelNode = parentAsModel->_FindDataItemModelFromModel( this );
             if( parentModelNode )
-                return  createIndex( parentModelNode->IndexInParent(), 0, parentModelNode );
+                return  parentAsModel->DataItemToModelIndex( parentModelNode );
         }
 
         return  QModelIndex();
@@ -62,7 +65,11 @@ int
 cModelBase::rowCount( const QModelIndex & iIndex ) const
 {
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
-    if( data )
+    auto  dataAsModelItem = dynamic_cast< cDataItemModel* >( data );
+
+    if( dataAsModelItem )
+        return  dataAsModelItem->mModel->rowCount( QModelIndex() );
+    else if( data )
         return  data->ChildrenCount();
 
     return  0;
@@ -73,7 +80,11 @@ int
 cModelBase::columnCount( const QModelIndex & iIndex ) const
 {
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
-    if( data )
+    auto  dataAsModelItem = dynamic_cast< cDataItemModel* >( data );
+
+    if( dataAsModelItem )
+        return  dataAsModelItem->mModel->columnCount( QModelIndex() );
+    else if( data )
         return  data->DataCount();
 
     return  0;
@@ -153,7 +164,7 @@ cDataItemModel *
 cModelBase::AddModelNode( QAbstractItemModel * iModel, cDataItem * iParent )
 {
     auto newModelNode = new cDataItemModel( iModel, iParent );
-    mModelExposedMap[ newModelNode ] = false;
+    mModelExposedMap[ newModelNode ] = true;
     iModel->setParent( this );
 
     connect( iModel, &QAbstractItemModel::dataChanged, this, &cModelBase::ForceFullRefresh );
@@ -183,6 +194,13 @@ cModelBase::ExtractDataItemFromIndex( const QModelIndex & iIndex ) const
 }
 
 
+QModelIndex
+cModelBase::DataItemToModelIndex( cDataItem * iDataItem ) const
+{
+    return  createIndex( iDataItem->IndexInParent(), 0, iDataItem );
+}
+
+
 QAbstractItemModel*
 cModelBase::ExtractModelFromIndex( const QModelIndex & iIndex ) const
 {
@@ -209,8 +227,15 @@ cModelBase::ForceFullRefresh()
 
 
 cDataItemModel*
-cModelBase::_FindDataItemModelFromModel( const QAbstractItemModel * iModel ) const
+cModelBase::_FindDataItemModelFromModel( const cModelBase * iModel )
 {
-    return  0;//TODO
+    for( int i = 0; i < mRootItem->ChildrenCount(); ++i )
+    {
+        auto modelItemNode = dynamic_cast< cDataItemModel* >( mRootItem->ChildAtIndex( i ) );
+        if( modelItemNode && modelItemNode->mModel == iModel )
+            return  modelItemNode;
+    }
+
+    return  0;
 }
 

@@ -56,7 +56,7 @@ public:
     {
         if (cMainWindowClass->objectName().isEmpty())
             cMainWindowClass->setObjectName(QStringLiteral("cMainWindowClass"));
-        cMainWindowClass->resize(748, 595);
+        cMainWindowClass->resize(748, 659);
         centralWidget = new QWidget(cMainWindowClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout_3 = new QVBoxLayout(centralWidget);

@@ -12,6 +12,7 @@ public:
 public:
     // Read
     cDataItem*  Parent();
+    const cDataItem*  Parent() const;
     int         IndexInParent() const;
 
     virtual  QVariant   GetDataAtIndex( int iIndex );
@@ -19,6 +20,7 @@ public:
 
     virtual  std::string    Type() const;
     cDataItem*              ChildAtIndex( int iIndex );
+    const cDataItem*        ChildAtIndex( int iIndex ) const;
 
     int DataCount() const;
     int ChildrenCount() const;
