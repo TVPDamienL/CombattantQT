@@ -71,8 +71,9 @@ cModelBase::parent( const QModelIndex & iParent ) const
 int
 cModelBase::rowCount( const QModelIndex & iIndex ) const
 {
-    if( iIndex.isValid() && iIndex.model() != this )
-        return  iIndex.model()->rowCount( iIndex );
+    // No need to check this, as if we are not within the same model as iIndex's, the data extracted will ask its model if it's a dataModel anyway
+    //if( iIndex.isValid() && iIndex.model() != this )
+    //    return  iIndex.model()->rowCount( iIndex );
 
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
     return  data->ChildrenCount();
@@ -84,8 +85,9 @@ cModelBase::rowCount( const QModelIndex & iIndex ) const
 int
 cModelBase::columnCount( const QModelIndex & iIndex ) const
 {
-    if( iIndex.isValid() && iIndex.model() != this )
-        return  iIndex.model()->columnCount( iIndex );
+    // No need to check this, as if we are not within the same model as iIndex's, the data extracted will ask its model if it's a dataModel anyway
+    //if( iIndex.isValid() && iIndex.model() != this )
+    //    return  iIndex.model()->columnCount( iIndex );
 
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
     return  data->DataCount();
