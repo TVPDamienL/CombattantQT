@@ -241,6 +241,17 @@ cModelBase::ForceFullRefresh()
 }
 
 
+QModelIndex
+cModelBase::RootIndex() const
+{
+    auto  parentAsModel = dynamic_cast< cModelBase* >( QObject::parent() );
+    if( parentAsModel )
+        return  index( 0, 0, QModelIndex() ).parent();
+    else
+        return  QModelIndex();
+}
+
+
 cDataItemModel*
 cModelBase::_FindDataItemModelFromModel( const cModelBase * iModel )
 {

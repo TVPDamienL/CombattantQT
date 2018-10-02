@@ -36,10 +36,7 @@ cCombattantView::ShowCombattant( cCombattantModel* iCombattant )
     // The combattant model and the mapper
     mMappy->setModel( mCombattantModel );
 
-    auto root = mCombattantModel->index( 0, 0, QModelIndex() );
-    auto data = root.data();
-    root.parent();
-    mMappy->setRootIndex( root.parent() );
+    mMappy->setRootIndex( mCombattantModel->RootIndex() );
     mMappy->clearMapping();
     mMappy->addMapping( ui.lineEdit, 0 );
     mMappy->addMapping( ui.comboBox, 1, "currentText" );

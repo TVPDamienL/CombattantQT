@@ -43,6 +43,8 @@ public:
     QAbstractItemModel*     ExtractModelFromIndex( int iIndex ) const;
     void                    ForceFullRefresh();
 
+    QModelIndex             RootIndex() const;
+
 private:
     cDataItemModel*         _FindDataItemModelFromModel( const cModelBase* iModel );
 
