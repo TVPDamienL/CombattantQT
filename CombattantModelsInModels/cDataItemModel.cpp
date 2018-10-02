@@ -58,20 +58,23 @@ cDataItemModel::SetData( int iIndex, const QVariant & value )
 int
 cDataItemModel::DataCount() const
 {
-    return  mModel->columnCount( QModelIndex() );
+    return  mExposed ? mModel->columnCount( QModelIndex() ) : 0;
 }
 
 
 int
 cDataItemModel::ChildrenCount() const
 {
-    return  mModel->rowCount( QModelIndex() );
+    return  mExposed ? mModel->rowCount( QModelIndex() ) : 0;
 }
 
 
 cDataItem*
 cDataItemModel::ChildAtIndex( int iIndex )
 {
+    if( !mExposed )
+        return  0;
+
     QModelIndex index = mModel->index( iIndex, 0, QModelIndex() );
     cDataItem* item = (cDataItem*)(index.internalPointer());
 
@@ -82,8 +85,25 @@ cDataItemModel::ChildAtIndex( int iIndex )
 const cDataItem*
 cDataItemModel::ChildAtIndex( int iIndex ) const
 {
+    if( !mExposed )
+        return  0;
+
     QModelIndex index = mModel->index( iIndex, 0, QModelIndex() );
     const cDataItem* item = (const cDataItem*)(index.internalPointer());
 
     return  item;
+}
+
+
+bool
+cDataItemModel::Exposed() const
+{
+    return  mExposed;
+}
+
+
+void
+cDataItemModel::Exposed( bool iExposed )
+{
+    mExposed = iExposed;
 }

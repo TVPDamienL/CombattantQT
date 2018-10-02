@@ -48,5 +48,4 @@ private:
 
 protected:
     cDataItem*  mRootItem;
-    QMap< cDataItemModel*, bool > mModelExposedMap; // Does a model create a node in the tree and expose itself as well, or not
 };

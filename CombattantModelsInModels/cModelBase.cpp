@@ -29,7 +29,7 @@ cModelBase::index( int iRow, int iColumn, const QModelIndex & iParent ) const
 
     // If the child node is a model node, and that model is exposed, we go to the model
     auto  itemAsDataModel = dynamic_cast< cDataItemModel* >( theNode );
-    if( itemAsDataModel && mModelExposedMap[ itemAsDataModel ] )
+    if( itemAsDataModel && itemAsDataModel->Exposed() )
         return  itemAsDataModel->mModel->index( iRow, iColumn, QModelIndex() );
 
     // Otherwise, we use the usual children
@@ -57,7 +57,7 @@ cModelBase::parent( const QModelIndex & iParent ) const
         if( parentAsModel )
         {
             cDataItemModel* parentModelNode = parentAsModel->_FindDataItemModelFromModel( this );
-            if( parentModelNode )
+            if( parentModelNode && parentModelNode->Exposed() )
                 return  parentAsModel->DataItemToModelIndex( parentModelNode );
         }
 
@@ -75,12 +75,7 @@ cModelBase::rowCount( const QModelIndex & iIndex ) const
         return  iIndex.model()->rowCount( iIndex );
 
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
-    auto  dataAsModelItem = dynamic_cast< cDataItemModel* >( data );
-
-    if( dataAsModelItem )
-        return  dataAsModelItem->mModel->rowCount( QModelIndex() );
-    else if( data )
-        return  data->ChildrenCount();
+    return  data->ChildrenCount();
 
     return  0;
 }
@@ -93,12 +88,7 @@ cModelBase::columnCount( const QModelIndex & iIndex ) const
         return  iIndex.model()->columnCount( iIndex );
 
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
-    auto  dataAsModelItem = dynamic_cast< cDataItemModel* >( data );
-
-    if( dataAsModelItem )
-        return  dataAsModelItem->mModel->columnCount( QModelIndex() );
-    else if( data )
-        return  data->DataCount();
+    return  data->DataCount();
 
     return  0;
 }
@@ -189,7 +179,7 @@ cDataItemModel *
 cModelBase::AddModelNode( QAbstractItemModel * iModel, cDataItem * iParent )
 {
     auto newModelNode = new cDataItemModel( iModel, iParent );
-    mModelExposedMap[ newModelNode ] = true;
+    newModelNode->Exposed( true );
     iModel->setParent( this );
 
     connect( iModel, &QAbstractItemModel::dataChanged, this, &cModelBase::ForceFullRefresh );

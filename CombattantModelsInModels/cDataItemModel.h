@@ -29,7 +29,12 @@ public:
     virtual  cDataItem*         ChildAtIndex( int iIndex ) override;
     virtual  const cDataItem*   ChildAtIndex( int iIndex ) const override;
 
+public:
+    bool  Exposed() const;
+    void  Exposed( bool iExposed );
+
 public: // dirty quickcoding
-    QAbstractItemModel* mModel;
+    QAbstractItemModel* mModel      = 0;
+    bool                mExposed    = false;
 };
 
