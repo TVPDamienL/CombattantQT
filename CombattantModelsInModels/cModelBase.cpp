@@ -2,6 +2,7 @@
 
 #include "cDataItemModel.h"
 
+
 cModelBase::~cModelBase()
 {
 }
@@ -19,6 +20,9 @@ cModelBase::index( int iRow, int iColumn, const QModelIndex & iParent ) const
 {
     if( iParent.isValid() && iParent.column() != 0 )
         return  QModelIndex();
+
+    if( iParent.isValid() && iParent.model() != this )
+        return  iParent.model()->index( iRow, iColumn, iParent );
 
     cDataItem* theNode = ExtractDataItemFromIndex( iParent );
     cDataItem* childNode = theNode->ChildAtIndex( iRow );
@@ -42,6 +46,9 @@ cModelBase::parent( const QModelIndex & iParent ) const
     if( !iParent.isValid() )
         return  QModelIndex();
 
+    if( iParent.isValid() && iParent.model() != this )
+        return  iParent.model()->parent( iParent );
+
     cDataItem* theNode = ExtractDataItemFromIndex( iParent );
     cDataItem* theParent = theNode->Parent();
     if( theParent == mRootItem )
@@ -64,6 +71,9 @@ cModelBase::parent( const QModelIndex & iParent ) const
 int
 cModelBase::rowCount( const QModelIndex & iIndex ) const
 {
+    if( iIndex.isValid() && iIndex.model() != this )
+        return  iIndex.model()->rowCount( iIndex );
+
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
     auto  dataAsModelItem = dynamic_cast< cDataItemModel* >( data );
 
@@ -79,6 +89,9 @@ cModelBase::rowCount( const QModelIndex & iIndex ) const
 int
 cModelBase::columnCount( const QModelIndex & iIndex ) const
 {
+    if( iIndex.isValid() && iIndex.model() != this )
+        return  iIndex.model()->columnCount( iIndex );
+
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
     auto  dataAsModelItem = dynamic_cast< cDataItemModel* >( data );
 
@@ -96,6 +109,9 @@ cModelBase::data( const QModelIndex & iIndex, int iRole ) const
 {
     if( !iIndex.isValid() )
         QVariant();
+
+    if( iIndex.isValid() && iIndex.model() != this )
+        return  iIndex.model()->data( iIndex, iRole );
 
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
 
@@ -141,6 +157,12 @@ cModelBase::setData( const QModelIndex & iIndex, const QVariant & iData, int iRo
     if( iRole != Qt::EditRole )
         return  false;
 
+    if( iIndex.isValid() && iIndex.model() != this )
+    {
+        auto themodel = const_cast< QAbstractItemModel* >( iIndex.model() );
+        return  themodel->setData( iIndex, iData, iRole );
+    }
+
     cDataItem*  item = ExtractDataItemFromIndex( iIndex );
     bool  result = item->SetData( iIndex.column(), iData );
     if( result )
@@ -155,6 +177,9 @@ cModelBase::flags( const QModelIndex & iIndex ) const
 {
     if( !iIndex.isValid() )
         return  0;
+
+    if( iIndex.isValid() && iIndex.model() != this )
+        return  iIndex.model()->flags( iIndex );
 
     return  tSuperClass::flags( iIndex ) | Qt::ItemIsEditable;
 }

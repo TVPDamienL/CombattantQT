@@ -25,8 +25,12 @@ cCombattantListModel::BuildData()
     mRootItem->AddData( "Name" );
     mRootItem->AddData( "Value" );
 
-    for( auto comb : mCombattantList )
-        AddModelNode( new cCombattantModel( comb ), mRootItem );
+    //for( auto comb : mCombattantList )
+    //    AddModelNode( new cCombattantModel( comb ), mRootItem );
+
+    AddModelNode( new cCombattantModel( mCombattantList[ 0 ] ), mRootItem );
+    AddModelNode( new cCombattantModel( mCombattantList[ 0 ] ), mRootItem );
+    AddModelNode( new cCombattantModel( mCombattantList[ 1 ] ), mRootItem );
 }
 
 
