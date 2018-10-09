@@ -12,6 +12,12 @@ class cCombattant:
         self.mName = iName
         self.mWeapon = gAllWeapons[ 0 ]
         self.mShieldRating = 0
+    # --------------------------------
 
-    def ChangeWeapon(self, iIndex):
-        self.mWeapon = gAllWeapons[ iIndex ]
+
+    def ChangeWeapon(self, iWeaponName):
+        for weapon in gAllWeapons:
+            if weapon.mName == iWeaponName:
+                self.mWeapon = weapon
+    # --------------------------------
+

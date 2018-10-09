@@ -25,7 +25,20 @@ class cMainWindow(QMainWindow):
 
         self.mainList.selectionModel().currentChanged.connect( self.CombattantSelected )
 
+        self.shiledSpinBox.valueChanged.connect( self.SubmitToModel )
+        self.weaponComboBox.currentIndexChanged.connect( self.SubmitToModel )
+
+        weaponList = "Fist", "Dagger", "Sword", "Pike"
+        self.weaponComboBox.addItems( weaponList )
+    # --------------------------------
+
 
     def CombattantSelected(self, iIndex):
         self.mMapper.setRootIndex( iIndex )
         self.mMapper.toFirst()
+    # --------------------------------
+
+
+    def  SubmitToModel(self, iValue):
+        self.mMapper.submit()
+    # --------------------------------
