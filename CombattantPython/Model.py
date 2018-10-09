@@ -36,7 +36,7 @@ class cModel(QAbstractItemModel):
         if parentNode == self.mRootIndex:
             return  QModelIndex()
 
-        return  self.createIndex( node.IndexInParent(), 0, parentNode )
+        return  self.createIndex( parentNode.IndexInParent(), 0, parentNode )
     # --------------------------------
 
 
@@ -120,7 +120,8 @@ class cModel(QAbstractItemModel):
         if type(iItem.mParent) is DataWrapper.cCombattantNameNode:
             topNode = iItem.mParent
 
-        self.dataChanged.emit( self.GetIndexFromItem(topNode), self.GetIndexFromItem(topNode.mChildren[0]) )
+        self.dataChanged.emit( self.GetIndexFromItem(topNode), self.GetIndexFromItem(topNode) )
+        self.dataChanged.emit( self.GetIndexFromItem(topNode.mChildren[0]), self.GetIndexFromItem(topNode.mChildren[0]) )
     # --------------------------------
 
 
