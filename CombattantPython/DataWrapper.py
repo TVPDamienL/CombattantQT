@@ -82,7 +82,7 @@ class cCombattantWeaponNode(cDataItem):
     # --------------------------------
 
     def SetData(self, iData):
-        self.mCombattant.ChangeWeapon( iData.toString() )
+        self.mCombattant.ChangeWeapon( iData )
         return  True
     # --------------------------------
 
@@ -104,7 +104,7 @@ class cCombattantShieldNode(cDataItem):
     # --------------------------------
 
     def SetData(self, iData):
-        self.mCombattant.mShieldRating( iData.toInt() )
+        self.mCombattant.mShieldRating = iData
         return  True
     # --------------------------------
 

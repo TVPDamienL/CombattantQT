@@ -74,6 +74,9 @@ class cModel(QAbstractItemModel):
         if result == True:
             self.dataChanged.emit(iIndex, iIndex)
 
+        if type(item) is DataWrapper.cCombattantNameNode:
+            self._UpdateCombattantNameNode( item )
+
         return  result
     # --------------------------------
 
@@ -111,6 +114,20 @@ class cModel(QAbstractItemModel):
             DataWrapper.cCombattantShieldNode( combNode, comb )
     # --------------------------------
 
+
+    def _UpdateCombattantNameNode(self, iItem):
+        topNode = iItem
+        if type(iItem.mParent) is DataWrapper.cCombattantNameNode:
+            topNode = iItem.mParent
+
+        # self.dataChanged.emit( self.GetIndexFromItem(topNode), self.GetIndexFromItem(topNode.mChildren[0]) )
+        self.dataChanged.emit( QModelIndex(), QModelIndex() )
+    # --------------------------------
+
+
+    def  GetIndexFromItem(self, iItem):
+        return  self.createIndex( iItem.IndexInParent(), 0, iItem )
+    # --------------------------------
 
 
 
