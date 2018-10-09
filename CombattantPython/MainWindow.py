@@ -1,4 +1,3 @@
-import sys
 import Model
 
 
@@ -21,7 +20,7 @@ class cMainWindow(QMainWindow):
         self.mMapper.setModel( self.mModel )
         self.mMapper.setOrientation( Qt.Vertical )
         self.mMapper.addMapping( self.nameLineEdit, 0)
-        # self.mMapper.addMapping( self.weaponComboBox, 0, "currentText" )
+        self.mMapper.addMapping( self.weaponComboBox, 0, b"currentText" )
         self.mMapper.addMapping( self.shiledSpinBox, 1)
 
         self.mainList.selectionModel().currentChanged.connect( self.CombattantSelected )

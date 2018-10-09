@@ -65,6 +65,26 @@ class cModel(QAbstractItemModel):
         return  QVariant()
     # --------------------------------
 
+    def setData( self, iIndex, iData, iRole ):
+        if iRole != Qt.EditRole:
+            return  False
+
+        item = self.ExtractItem( iIndex )
+        result = item.SetData( iData )
+        if result == True:
+            self.dataChanged.emit(iIndex, iIndex)
+
+        return  result
+    # --------------------------------
+
+
+    def flags( self, iIndex ):
+        if not iIndex.isValid():
+            return  0
+
+        return  super(cModel, self).flags(iIndex) | Qt.ItemIsEditable
+    # --------------------------------
+
 
     def headerData( self, iSection, iOrientation, iRole):
         if iOrientation == Qt.Horizontal or iRole == Qt.DisplayRole:
