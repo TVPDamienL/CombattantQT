@@ -28,8 +28,6 @@ cCombattantView::ShowCombattant( cCombattantModel* iCombattant )
     for( int i = 0; i < weaponCount; ++i )
         items << mCombattantModel->mCombattant->WeaponAtIndex( i )->Name().c_str();
 
-    items << "None";
-
     ui.comboBox->clear();
     ui.comboBox->addItems( items );
 

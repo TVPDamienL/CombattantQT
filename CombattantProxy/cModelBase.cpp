@@ -21,16 +21,8 @@ cModelBase::index( int iRow, int iColumn, const QModelIndex & iParent ) const
     if( iParent.isValid() && iParent.column() != 0 )
         return  QModelIndex();
 
-    if( iParent.isValid() && iParent.model() != this )
-        return  iParent.model()->index( iRow, iColumn, iParent );
-
     cDataItem* theNode = ExtractDataItemFromIndex( iParent );
     cDataItem* childNode = theNode->ChildAtIndex( iRow );
-
-    // If the child node is a model node, and that model is exposed, we go to the model
-    auto  itemAsDataModel = dynamic_cast< cDataItemModel* >( theNode );
-    if( itemAsDataModel && itemAsDataModel->Exposed() )
-        return  itemAsDataModel->mModel->index( iRow, iColumn, QModelIndex() );
 
     // Otherwise, we use the usual children
     if( childNode )
@@ -46,23 +38,11 @@ cModelBase::parent( const QModelIndex & iParent ) const
     if( !iParent.isValid() )
         return  QModelIndex();
 
-    if( iParent.isValid() && iParent.model() != this )
-        return  iParent.model()->parent( iParent );
-
     cDataItem* theNode = ExtractDataItemFromIndex( iParent );
     cDataItem* theParent = theNode->Parent();
-    if( theParent == mRootItem )
-    {
-        auto  parentAsModel = dynamic_cast< cModelBase* >( QObject::parent() );
-        if( parentAsModel )
-        {
-            cDataItemModel* parentModelNode = parentAsModel->_FindDataItemModelFromModel( this );
-            if( parentModelNode && parentModelNode->Exposed() )
-                return  parentAsModel->DataItemToModelIndex( parentModelNode );
-        }
 
+    if( theParent == mRootItem )
         return  QModelIndex();
-    }
 
     return  createIndex( theNode->IndexInParent(), 0, theParent );
 }
@@ -71,28 +51,16 @@ cModelBase::parent( const QModelIndex & iParent ) const
 int
 cModelBase::rowCount( const QModelIndex & iIndex ) const
 {
-    // No need to check this, as if we are not within the same model as iIndex's, the data extracted will ask its model if it's a dataModel anyway
-    //if( iIndex.isValid() && iIndex.model() != this )
-    //    return  iIndex.model()->rowCount( iIndex );
-
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
     return  data->ChildrenCount();
-
-    return  0;
 }
 
 
 int
 cModelBase::columnCount( const QModelIndex & iIndex ) const
 {
-    // No need to check this, as if we are not within the same model as iIndex's, the data extracted will ask its model if it's a dataModel anyway
-    //if( iIndex.isValid() && iIndex.model() != this )
-    //    return  iIndex.model()->columnCount( iIndex );
-
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
     return  data->DataCount();
-
-    return  0;
 }
 
 
@@ -151,12 +119,6 @@ cModelBase::setData( const QModelIndex & iIndex, const QVariant & iData, int iRo
     if( iRole != Qt::EditRole )
         return  false;
 
-    if( iIndex.isValid() && iIndex.model() != this )
-    {
-        auto themodel = const_cast< QAbstractItemModel* >( iIndex.model() );
-        return  themodel->setData( iIndex, iData, iRole );
-    }
-
     cDataItem*  item = ExtractDataItemFromIndex( iIndex );
     bool  result = item->SetData( iIndex.column(), iData );
     if( result )
@@ -172,10 +134,7 @@ cModelBase::flags( const QModelIndex & iIndex ) const
     if( !iIndex.isValid() )
         return  0;
 
-    if( iIndex.isValid() && iIndex.model() != this )
-        return  iIndex.model()->flags( iIndex );
-
-    return  tSuperClass::flags( iIndex ) | Qt::ItemIsEditable;
+    return  tSuperClass::flags( iIndex );
 }
 
 

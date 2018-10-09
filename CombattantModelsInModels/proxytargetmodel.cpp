@@ -18,6 +18,7 @@ cProxyTargetModel::CurrentSelectedCombattant( const QModelIndex& iCurrent, const
 bool
 cProxyTargetModel::filterAcceptsRow( int iSourceRow, const QModelIndex & iSourceParent ) const
 {
+    return  true;
     QModelIndex theRow = sourceModel()->index( iSourceRow, 0, iSourceParent );
     return  theRow.data() != mCurrentSelectedCombattant.data();
 }

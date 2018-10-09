@@ -19,9 +19,9 @@ QVariant
 cDataItemCombattant::GetDataAtIndex( int iIndex )
 {
     if( mData[ 0 ] == "CombattantName" )
-        return  mCombattant->Name().c_str();
+        return  QString( mCombattant->Name().c_str() );
     else if( mData[ 0 ] == "CombattantWeapon" )
-        return  mCombattant->CurrentWeapon()->Name().c_str();
+        return  QString( mCombattant->CurrentWeapon()->Name().c_str() );
     else if( mData[ 0 ] == "CombattantShield" )
         return  mCombattant->ShieldRating();
 

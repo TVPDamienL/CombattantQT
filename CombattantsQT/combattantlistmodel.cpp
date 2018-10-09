@@ -39,7 +39,7 @@ cCombattantListModel::data( const QModelIndex & iIndex, int iRole ) const
     {
         switch( iIndex.column() )
         {
-            case 0:     return  CombattantAtIndex( iIndex )->Name().c_str();
+            case 0:     return  QString( CombattantAtIndex( iIndex )->Name().c_str() );
             case 1:     return  CombattantAtIndex( iIndex )->ShieldRating();
             default:    break;
         }

@@ -33,7 +33,7 @@ cCombattantModel::data( const QModelIndex & iIndex, int iRole ) const
         switch( iIndex.row() )
         {
             case 0:
-                return  mCombattant->Name().c_str();
+                return  QString( mCombattant->Name().c_str() );
 
             case 1:
                 if( mCombattant->CurrentWeapon() != 0 )
