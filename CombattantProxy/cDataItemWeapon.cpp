@@ -57,6 +57,8 @@ cDataItemWeaponBaseNode::GetDataAtIndex( int iIndex )
 {
     if( iIndex == 0 )
         return  "Weapon";
+
+    return  QVariant();
 }
 
 

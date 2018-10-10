@@ -74,6 +74,15 @@ cTheModel::setData( const QModelIndex & iIndex, const QVariant & iData, int iRol
         auto combattantNode = dynamic_cast< cDataItemCombattantBaseNode* >( item->Parent() );
         auto combattant = combattantNode->Combattant();
         combattant->CurrentWeapon( iData.toString().toStdString() );
+
+        auto weaponBaseNode = dynamic_cast< cDataItemWeaponBase* >( item );
+        weaponBaseNode->Weapon( combattant->CurrentWeapon() );
+
+        auto weaponNameNode = dynamic_cast< cDataItemWeaponBase* >( item->ChildAtIndex( 0 ) );
+        weaponNameNode->Weapon( combattant->CurrentWeapon() );
+
+        auto weaponDamageNode = dynamic_cast< cDataItemWeaponBase* >( item->ChildAtIndex( 1 ) );
+        weaponDamageNode->Weapon( combattant->CurrentWeapon() );
     }
     else if( dynamic_cast< cDataItemCombattantBaseNode* >( item )  )
     {
@@ -86,7 +95,6 @@ cTheModel::setData( const QModelIndex & iIndex, const QVariant & iData, int iRol
     {
         emit dataChanged( iIndex.parent(), iIndex.parent() );
     }
-
 
     return  true;
 }
