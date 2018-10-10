@@ -140,7 +140,7 @@ cCombattant::CurrentWeapon( const std::string & iName )
     else if( iName == mWeapon3->Name() )
         mCurrentWeapon = mWeapon3;
     else
-        mCurrentWeapon = 0;
+        mCurrentWeapon = mWeapon0;
 }
 
 

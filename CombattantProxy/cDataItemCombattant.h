@@ -14,7 +14,8 @@ public:
     ~cDataItemCombattantBase();
     cDataItemCombattantBase( cCombattant* iCombattant, cDataItem* iParent = 0 );
 
-    int                DataCount() const override;
+    int             DataCount() const override;
+    cCombattant*    Combattant();
 
 protected:
     cCombattant* mCombattant;

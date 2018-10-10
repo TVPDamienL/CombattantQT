@@ -16,6 +16,10 @@ public:
 
     int                DataCount() const override;
 
+public:
+    cWeapon*    Weapon();
+    void        Weapon( cWeapon* Weapon );
+
 
 public: // dirty quickcoding
     cWeapon* mWeapon;

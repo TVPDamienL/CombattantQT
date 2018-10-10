@@ -21,6 +21,20 @@ cDataItemWeaponBase::DataCount() const
 }
 
 
+cWeapon*
+cDataItemWeaponBase::Weapon()
+{
+    return  mWeapon;
+}
+
+
+void
+cDataItemWeaponBase::Weapon( cWeapon * iWeapon )
+{
+    mWeapon = iWeapon;
+}
+
+
 // ==============
 // ==============
 // ==============
@@ -43,8 +57,6 @@ cDataItemWeaponBaseNode::GetDataAtIndex( int iIndex )
 {
     if( iIndex == 0 )
         return  "Weapon";
-
-    return  QString( mWeapon->Name().c_str() );
 }
 
 
@@ -53,8 +65,6 @@ cDataItemWeaponBaseNode::SetData( int iIndex, const QVariant & value )
 {
     if( iIndex != 1 )
         return  false;
-
-    mWeapon->Name( value.toString().toStdString() );
     return  true;
 }
 

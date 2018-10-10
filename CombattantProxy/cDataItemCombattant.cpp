@@ -22,6 +22,13 @@ cDataItemCombattantBase::DataCount() const
 }
 
 
+cCombattant*
+cDataItemCombattantBase::Combattant()
+{
+    return  mCombattant;
+}
+
+
 //=====================
 //=====================
 //=====================
