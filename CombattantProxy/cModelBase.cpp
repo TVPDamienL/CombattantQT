@@ -151,10 +151,16 @@ cModelBase::AddModelNode( QAbstractItemModel * iModel, cDataItem * iParent )
 }
 
 
-cDataItem*
-cModelBase::AddDataNode( cDataItem * iParent )
+void
+cModelBase::AddDataNode( cDataItem * iNode )
 {
-    return  new cDataItem( iParent );
+    iNode->ConnectToDataChanged( [ this ] ( cDataItem* iItem ) {
+
+        QModelIndex topLeft = _GetIndexFromNodeAtColumn( iItem, 0 );
+        QModelIndex bottomRigt = _GetIndexFromNodeAtColumn( iItem, iItem->DataCount() - 1 );
+        emit  dataChanged( topLeft, bottomRigt );
+
+    } );
 }
 
 
@@ -215,6 +221,16 @@ cModelBase::RootIndex() const
 }
 
 
+void
+cModelBase::ItemDataChanged( cDataItem* iItem )
+{
+    QModelIndex topLeft = _GetIndexFromNodeAtColumn( iItem, 0 );
+    QModelIndex bottomRigt = _GetIndexFromNodeAtColumn( iItem, iItem->DataCount() );
+    emit  dataChanged( topLeft, bottomRigt );
+}
+
+
+
 cDataItemModel*
 cModelBase::_FindDataItemModelFromModel( const cModelBase * iModel )
 {
@@ -226,5 +242,12 @@ cModelBase::_FindDataItemModelFromModel( const cModelBase * iModel )
     }
 
     return  0;
+}
+
+
+QModelIndex
+cModelBase::_GetIndexFromNodeAtColumn( cDataItem* iItem, int iColumn )
+{
+    return  createIndex( iItem->IndexInParent(), iColumn, iItem );
 }
 

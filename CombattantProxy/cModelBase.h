@@ -36,7 +36,7 @@ public:
     virtual     void        BuildData() = 0; // The only real method to reimplement
 
     cDataItemModel*         AddModelNode( QAbstractItemModel* iModel, cDataItem* iParent );
-    cDataItem*              AddDataNode( cDataItem* iParent );
+    void                    AddDataNode( cDataItem* iParent );
     cDataItem*              ExtractDataItemFromIndex( const QModelIndex& iIndex ) const;
     QModelIndex             DataItemToModelIndex( cDataItem* iDataItem ) const;
     QAbstractItemModel*     ExtractModelFromIndex( const QModelIndex& iIndex ) const;
@@ -45,8 +45,13 @@ public:
 
     QModelIndex             RootIndex() const;
 
+public:
+    void  ItemDataChanged( cDataItem* iItem );
+
+
 private:
-    cDataItemModel*         _FindDataItemModelFromModel( const cModelBase* iModel );
+    cDataItemModel* _FindDataItemModelFromModel( const cModelBase* iModel );
+    QModelIndex     _GetIndexFromNodeAtColumn( cDataItem* iItem, int iColumn );
 
 protected:
     cDataItem*  mRootItem;

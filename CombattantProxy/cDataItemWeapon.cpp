@@ -29,9 +29,9 @@ cDataItemWeaponBase::Weapon()
 
 
 void
-cDataItemWeaponBase::Weapon( cWeapon * iWeapon )
+cDataItemWeaponBase::Weapon( cWeapon * Weapon )
 {
-    mWeapon = iWeapon;
+    mWeapon = Weapon;
 }
 
 
@@ -71,6 +71,20 @@ cDataItemWeaponBaseNode::SetData( int iIndex, const QVariant & value )
 }
 
 
+void
+cDataItemWeaponBaseNode::Weapon( cWeapon * iWeapon )
+{
+    mWeapon = iWeapon;
+    _DataChanged( this );
+    for( auto child : mChildren )
+    {
+        auto childAsWeaponBase = dynamic_cast< cDataItemWeaponBase* >( child );
+        childAsWeaponBase->Weapon( iWeapon );
+        _DataChanged( child );
+    }
+}
+
+
 // ==============
 // ==============
 // ==============
@@ -102,6 +116,7 @@ bool
 cDataItemWeaponName::SetData( int iIndex, const QVariant & value )
 {
     mWeapon->Name( value.toString().toStdString() );
+    _DataChanged( this );
     return  true;
 }
 
@@ -137,6 +152,7 @@ bool
 cDataItemWeaponDamage::SetData( int iIndex, const QVariant & value )
 {
     mWeapon->Damage( value.toInt() );
+    _DataChanged( this );
     return  true;
 }
 

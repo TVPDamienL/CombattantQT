@@ -95,6 +95,7 @@ bool
 cDataItemCombattantName::SetData( int iIndex, const QVariant & value )
 {
     mCombattant->Name( value.toString().toStdString() );
+    _DataChanged( this );
     return  true;
 }
 
@@ -130,6 +131,7 @@ bool
 cDataItemCombattantShield::SetData( int iIndex, const QVariant & value )
 {
     mCombattant->ShieldRating( value.toInt() );
+    _DataChanged( this );
     return  true;
 }
 

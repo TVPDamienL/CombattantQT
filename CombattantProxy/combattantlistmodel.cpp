@@ -40,6 +40,13 @@ cTheModel::BuildData()
                 auto weaponDamage = new cDataItemWeaponDamage( theweapon, weaponNode );
 
             auto shieldNode = new cDataItemCombattantShield( combattant, combattantNode );
+
+        AddDataNode( combattantNode );
+        AddDataNode( combattantName );
+        AddDataNode( weaponNode );
+        AddDataNode( weaponName );
+        AddDataNode( weaponDamage );
+        AddDataNode( shieldNode );
     }
 }
 
@@ -64,37 +71,19 @@ cTheModel::setData( const QModelIndex & iIndex, const QVariant & iData, int iRol
         return  false;
 
     cDataItem*  item = ExtractDataItemFromIndex( iIndex );
-    if( !item->SetData( iIndex.column(), iData ) )
-        return  false;
 
-    emit dataChanged( iIndex, iIndex );
-
-    if( dynamic_cast< cDataItemWeaponBaseNode* >( item ) )
+    auto weaponBaseNode = dynamic_cast< cDataItemWeaponBaseNode* >( item );
+    if( weaponBaseNode )
     {
         auto combattantNode = dynamic_cast< cDataItemCombattantBaseNode* >( item->Parent() );
         auto combattant = combattantNode->Combattant();
         combattant->CurrentWeapon( iData.toString().toStdString() );
 
-        auto weaponBaseNode = dynamic_cast< cDataItemWeaponBase* >( item );
         weaponBaseNode->Weapon( combattant->CurrentWeapon() );
-
-        auto weaponNameNode = dynamic_cast< cDataItemWeaponBase* >( item->ChildAtIndex( 0 ) );
-        weaponNameNode->Weapon( combattant->CurrentWeapon() );
-
-        auto weaponDamageNode = dynamic_cast< cDataItemWeaponBase* >( item->ChildAtIndex( 1 ) );
-        weaponDamageNode->Weapon( combattant->CurrentWeapon() );
     }
-    else if( dynamic_cast< cDataItemCombattantBaseNode* >( item )  )
-    {
-        auto nodeName = item->ChildAtIndex( 0 );
-        QModelIndex indexOfWeaponNameData = createIndex( 0, 1, nodeName );
 
-        emit dataChanged( indexOfWeaponNameData, indexOfWeaponNameData );
-    }
-    else if( dynamic_cast<cDataItemCombattantName*>( item ) || dynamic_cast<cDataItemWeaponName*>( item ) )
-    {
-        emit dataChanged( iIndex.parent(), iIndex.parent() );
-    }
+    if( !item->SetData( iIndex.column(), iData ) )
+        return  false;
 
     return  true;
 }

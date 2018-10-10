@@ -83,9 +83,6 @@
     <ClInclude Include="cDataItemWeapon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cDataItem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="cDataItemCombattant.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -112,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="cProxyFilterSortBase.h">
       <Filter>Source Files\ButDeLexercice</Filter>
+    </ClInclude>
+    <ClInclude Include="cDataItem.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

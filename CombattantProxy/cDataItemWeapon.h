@@ -40,6 +40,9 @@ public:
 public:
     virtual  QVariant   GetDataAtIndex( int iIndex ) override;
     virtual  bool       SetData( int iIndex, const QVariant &value ) override;
+
+public:
+    void  Weapon( cWeapon* Weapon );
 };
 
 // =========
