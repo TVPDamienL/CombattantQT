@@ -35,8 +35,8 @@ cCombattantView::ShowCombattant( cProxyTargetModel* iProxy )
     ui.comboBox->clear();
     ui.comboBox->addItems( items );
 
-    //mWeaponProxy->setSourceModel( iProxy );
-    //mWeaponProxy->CurrentSelectedCombattant( iProxy->index( 0, 0, QModelIndex() ), QModelIndex() );
+    mWeaponProxy->setSourceModel( iProxy );
+    mWeaponProxy->CurrentSelectedCombattant( iProxy->index( 0, 0, QModelIndex() ), QModelIndex() );
 
     // The combattant model and the mapper
     mMappy->setModel( iProxy );
@@ -47,17 +47,19 @@ cCombattantView::ShowCombattant( cProxyTargetModel* iProxy )
 
     mMappy->setCurrentIndex( 1 );
 
-    //RefreshWeapon();
-    //ui.widget->ShowWeapon( mWeaponProxy );
+    RefreshWeapon();
+    ui.widget->ShowWeapon( mWeaponProxy );
 
-    ui.treeView->setModel( iProxy );
-    ui.treeView->setRootIndex( iProxy->index( 0, 0, QModelIndex() ) );
+
+    QModelIndex combattantNode = mWeaponProxy->index( 0, 0, QModelIndex() );
+    ui.treeView->setModel( mWeaponProxy );
+    ui.treeView->setRootIndex( mWeaponProxy->index( 1, 0, combattantNode ) );
 }
 
 void
 cCombattantView::RefreshWeapon()
 {
-    //ui.widget->ShowWeapon( mCombattantModel->WeaponModel() );
+    ui.widget->ShowWeapon( mWeaponProxy );
 }
 
 

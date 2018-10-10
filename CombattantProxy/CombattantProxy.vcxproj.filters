@@ -31,42 +31,24 @@
     <Filter Include="Source Files\ButDeLexercice">
       <UniqueIdentifier>{d64ef100-155d-4bc9-9fc2-ea7a23c51277}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Items">
+      <UniqueIdentifier>{91b855c8-b56e-4acf-b094-6b69b11fffd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Models">
+      <UniqueIdentifier>{25cc7305-7c7a-44be-b2d3-f55fb49ff287}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Views">
+      <UniqueIdentifier>{09aa7988-e760-4949-9ee4-1f57d1ee9ff5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Data">
+      <UniqueIdentifier>{93b7a813-e4e0-48b0-8207-fa55f264894a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cDataItemWeapon.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cDataItem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cDataItemCombattant.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cDataItemModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="targetview.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="cMainWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cModelBase.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="combattant.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="combattantlistmodel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="combattantview.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cWeaponView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ProxyWeapon.cpp">
@@ -78,40 +60,70 @@
     <ClCompile Include="cProxyFilterSortBase.cpp">
       <Filter>Source Files\ButDeLexercice</Filter>
     </ClCompile>
+    <ClCompile Include="cDataItem.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="cDataItemCombattant.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="cDataItemModel.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="cDataItemWeapon.cpp">
+      <Filter>Source Files\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="combattantlistmodel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="cModelBase.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="combattantview.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="cWeaponView.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="targetview.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="combattant.cpp">
+      <Filter>Source Files\Data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cDataItemWeapon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cDataItemCombattant.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cDataItemModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="combattant.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cModelBase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="combattantlistmodel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cWeaponView.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="targetview.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="combattantview.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="cProxyFilterSortBase.h">
       <Filter>Source Files\ButDeLexercice</Filter>
     </ClInclude>
     <ClInclude Include="cDataItem.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="cDataItemCombattant.h">
+      <Filter>Source Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="cDataItemModel.h">
+      <Filter>Source Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="cDataItemWeapon.h">
+      <Filter>Source Files\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="cModelBase.h">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="combattantlistmodel.h">
+      <Filter>Source Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="combattantview.h">
+      <Filter>Source Files\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="cWeaponView.h">
+      <Filter>Source Files\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="targetview.h">
+      <Filter>Source Files\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="combattant.h">
+      <Filter>Source Files\Data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
