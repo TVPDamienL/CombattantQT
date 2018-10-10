@@ -18,18 +18,20 @@ cMainWindow::cMainWindow(QWidget *parent)
 void
 cMainWindow::BuildStuff()
 {
-    mCombattantListModel    = new cTheModel();
+    mCombattantListModel        = new cTheModel();
     mProxyTargetModelExclude    = new cProxyTargetModel( false );
-    mProxyTargetModelSingle     = new cProxyTargetModel( true );
+    mProxyCombattantSelected    = new cProxyTargetModel( true );
+    mProxyTargetSelected        = new cProxyTargetModel( true );
 
     mProxyTargetModelExclude->setSourceModel( mCombattantListModel );
-    mProxyTargetModelSingle->setSourceModel( mCombattantListModel );
+    mProxyCombattantSelected->setSourceModel( mCombattantListModel );
+    mProxyTargetSelected->setSourceModel( mCombattantListModel );
 
     ui.listCombattants->setModel( mCombattantListModel );
     ui.treeView->setModel( mCombattantListModel );
-    //ui.listTargets->setModel( mProxyTargetModelExclude );
+    ui.listTargets->setModel( mProxyTargetModelExclude );
 
-    //connect( ui.listCombattants->selectionModel(), &QItemSelectionModel::currentChanged, mProxyTargetModelExclude, &cProxyTargetModel::CurrentSelectedCombattant );
+    connect( ui.listCombattants->selectionModel(), &QItemSelectionModel::currentChanged, mProxyTargetModelExclude, &cProxyTargetModel::CurrentSelectedCombattant );
     connect( ui.listCombattants->selectionModel(), &QItemSelectionModel::currentChanged, this, &cMainWindow::CurrentCombattantChanged );
     connect( ui.listTargets->selectionModel(), &QItemSelectionModel::currentChanged, this, &cMainWindow::CurrentTargetChanged );
 
@@ -39,16 +41,17 @@ cMainWindow::BuildStuff()
 void
 cMainWindow::CurrentCombattantChanged( const QModelIndex & iCurrent, const QModelIndex & iPrevious )
 {
-    mProxyTargetModelSingle->CurrentSelectedCombattant( iCurrent, iPrevious );
-    ui.CombattantView->ShowCombattant( mProxyTargetModelSingle );
+    mProxyCombattantSelected->CurrentSelectedCombattant( iCurrent, iPrevious );
+    mProxyTargetModelExclude->CurrentSelectedCombattant( iCurrent, iPrevious );
+    ui.CombattantView->ShowCombattant( mProxyCombattantSelected );
 }
 
 
 void
 cMainWindow::CurrentTargetChanged( const QModelIndex & iCurrent, const QModelIndex & iPrevious )
 {
-    //mProxyTargetModelExclude->CurrentSelectedCombattant( iCurrent, iPrevious );
-    //ui.TargetView->ShowTarget( mProxyTargetModelExclude->mapToSource( iCurrent ) );
+    mProxyTargetSelected->CurrentSelectedCombattant( iCurrent, iPrevious );
+    ui.TargetView->ShowTarget( mProxyTargetSelected );
 }
 
 

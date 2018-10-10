@@ -1,5 +1,8 @@
 #pragma once
 
+#include "proxytargetmodel.h"
+
+
 #include <QWidget>
 #include <QDataWidgetMapper>
 
@@ -18,7 +21,7 @@ public:
     cTargetView( QWidget* iParent = 0 );
 
 public slots:
-    void  ShowTarget( const QModelIndex & iCurrent );
+    void  ShowTarget( cProxyTargetModel* iProxy );
 
 private:
     Ui::TargetView ui;

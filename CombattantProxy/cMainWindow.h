@@ -26,6 +26,7 @@ private:
     Ui::cMainWindowClass    ui;
     cTheModel*              mCombattantListModel;
     cProxyTargetModel*      mProxyTargetModelExclude;
-    cProxyTargetModel*      mProxyTargetModelSingle;
+    cProxyTargetModel*      mProxyCombattantSelected;
+    cProxyTargetModel*      mProxyTargetSelected;
 
 };

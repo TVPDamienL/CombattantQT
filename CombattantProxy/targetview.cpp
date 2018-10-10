@@ -19,13 +19,14 @@ cTargetView::cTargetView( QWidget* iParent ) :
 
 
 void
-cTargetView::ShowTarget( const QModelIndex & iCurrent )
+cTargetView::ShowTarget( cProxyTargetModel* iProxy )
 {
     // The combattant model and the mapper
-    mMappy->setModel( const_cast< QAbstractItemModel* >( iCurrent.model() ) );
+    mMappy->setModel( iProxy );
+    mMappy->setRootIndex( iProxy->index( 0, 0, QModelIndex() ) );
     mMappy->clearMapping();
     mMappy->addMapping( ui.lineEdit, 0 );
     mMappy->addMapping( ui.spinBox, 2 );
 
-    mMappy->toFirst();
+    mMappy->setCurrentIndex( 1 );
 }

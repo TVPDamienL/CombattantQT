@@ -25,11 +25,11 @@ cWeaponView::ShowWeapon( cWeaponProxy* iProxy )
     ui.spinBox->setValue( 0 );
 
     mMappy->setModel( iProxy );
-
     QModelIndex combattantNode = iProxy->index( 0, 0, QModelIndex() );
     mMappy->setRootIndex( iProxy->index( 1, 0, combattantNode ) );
-    mMappy->clearMapping();
-    mMappy->addMapping( ui.spinBox, 0 );
 
-    mMappy->toFirst();
+    mMappy->clearMapping();
+    mMappy->addMapping( ui.spinBox, 1 );
+
+    mMappy->setCurrentIndex( 1 );
 }
