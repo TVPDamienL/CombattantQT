@@ -1,7 +1,6 @@
 #include "cWeaponView.h"
 
 #include "combattant.h"
-#include "cWeaponModel.h"
 
 #include "ProxyWeapon.h"
 

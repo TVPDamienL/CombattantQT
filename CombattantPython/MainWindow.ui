@@ -14,68 +14,48 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QListView" name="mainList">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>50</y>
-      <width>191</width>
-      <height>221</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QWidget" name="formLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>320</x>
-      <y>60</y>
-      <width>160</width>
-      <height>80</height>
-     </rect>
-    </property>
-    <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="nameLabel">
-       <property name="text">
-        <string>Name</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="nameLineEdit"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="weaponLabel">
-       <property name="text">
-        <string>Weapon</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="weaponComboBox"/>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="shiledLabel">
-       <property name="text">
-        <string>Shiled</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QSpinBox" name="shiledSpinBox"/>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QTreeView" name="treeView">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>330</y>
-      <width>256</width>
-      <height>192</height>
-     </rect>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QListView" name="mainList"/>
+    </item>
+    <item row="0" column="1">
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="nameLabel">
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="nameLineEdit"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="weaponLabel">
+        <property name="text">
+         <string>Weapon</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QComboBox" name="weaponComboBox"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="shiledLabel">
+        <property name="text">
+         <string>Shiled</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="shiledSpinBox"/>
+      </item>
+     </layout>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <widget class="QTreeView" name="treeView"/>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -83,7 +63,7 @@
      <x>0</x>
      <y>0</y>
      <width>618</width>
-     <height>21</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

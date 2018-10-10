@@ -1,7 +1,6 @@
 #include "targetview.h"
 
 #include "combattant.h"
-#include "combattantmodel.h"
 
 
 cTargetView::~cTargetView()

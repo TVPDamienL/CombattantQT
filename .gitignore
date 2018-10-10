@@ -38,3 +38,10 @@ CombattantsQT/x64/
 CombattantModelsInModels/x64/
 *.user
 *.tlog
+
+# Visual Code
+build/
+
+# Python
+__pycache__
+*.pyc
