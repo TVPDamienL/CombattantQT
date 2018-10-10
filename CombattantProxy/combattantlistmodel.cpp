@@ -69,10 +69,18 @@ cTheModel::setData( const QModelIndex & iIndex, const QVariant & iData, int iRol
 
     emit dataChanged( iIndex, iIndex );
 
-    if( dynamic_cast< cDataItemCombattantBaseNode* >( item ) || dynamic_cast< cDataItemWeaponBaseNode* >( item ) )
-        emit dataChanged( index( 0, 0, iIndex ), index( 0, 1, iIndex ) );
-    else if( dynamic_cast< cDataItemCombattantName* >( item ) || dynamic_cast< cDataItemWeaponName* >( item ) )
+
+    if( dynamic_cast<cDataItemCombattantBaseNode*>( item ) || dynamic_cast<cDataItemWeaponBaseNode*>( item ) )
+    {
+        auto nodeWeaponName = item->ChildAtIndex( 0 );
+        QModelIndex indexOfWeaponNameData = createIndex( 0, 1, nodeWeaponName );
+
+        emit dataChanged( indexOfWeaponNameData, indexOfWeaponNameData );
+    }
+    else if( dynamic_cast<cDataItemCombattantName*>( item ) || dynamic_cast<cDataItemWeaponName*>( item ) )
+    {
         emit dataChanged( iIndex.parent(), iIndex.parent() );
+    }
 
 
     return  true;
