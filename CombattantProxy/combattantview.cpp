@@ -39,8 +39,8 @@ cCombattantView::ShowCombattant( cProxyTargetModel* iProxy )
     //mWeaponProxy->CurrentSelectedCombattant( iProxy->index( 0, 0, QModelIndex() ), QModelIndex() );
 
     // The combattant model and the mapper
-    mMappy->setModel( iProxy->sourceModel() );
-    mMappy->setRootIndex( iProxy->mapToSource( iProxy->index( 0, 0, QModelIndex() ) ) );
+    mMappy->setModel( iProxy );
+    mMappy->setRootIndex( iProxy->index( 0, 0, QModelIndex() ) );
     mMappy->clearMapping();
     mMappy->addMapping( ui.lineEdit, 0 );
     mMappy->addMapping( ui.comboBox, 1, "currentText" );
@@ -50,8 +50,8 @@ cCombattantView::ShowCombattant( cProxyTargetModel* iProxy )
     //RefreshWeapon();
     //ui.widget->ShowWeapon( mWeaponProxy );
 
-    ui.treeView->setModel( iProxy->sourceModel() );
-    ui.treeView->setRootIndex( iProxy->mapToSource( iProxy->index( 0, 0, QModelIndex() ) ) );
+    ui.treeView->setModel( iProxy );
+    ui.treeView->setRootIndex( iProxy->index( 0, 0, QModelIndex() ) );
 }
 
 void

@@ -20,5 +20,6 @@ public:
 public:
     void  BuildData() override;
     virtual  Qt::ItemFlags  flags( const QModelIndex& iIndex ) const   override;
+    virtual  bool           setData( const QModelIndex& iIndex, const QVariant& iData, int iRole = Qt::EditRole )           override;
 };
 

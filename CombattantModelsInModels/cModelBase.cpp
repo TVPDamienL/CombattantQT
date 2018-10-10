@@ -64,7 +64,7 @@ cModelBase::parent( const QModelIndex & iParent ) const
         return  QModelIndex();
     }
 
-    return  createIndex( theNode->IndexInParent(), 0, theParent );
+    return  createIndex( theParent->IndexInParent(), 0, theParent );
 }
 
 

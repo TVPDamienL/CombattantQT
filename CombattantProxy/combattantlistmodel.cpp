@@ -56,3 +56,25 @@ cTheModel::flags( const QModelIndex & iIndex ) const
     return  tSuperClass::flags( iIndex );
 }
 
+
+bool
+cTheModel::setData( const QModelIndex & iIndex, const QVariant & iData, int iRole )
+{
+    if( iRole != Qt::EditRole )
+        return  false;
+
+    cDataItem*  item = ExtractDataItemFromIndex( iIndex );
+    if( !item->SetData( iIndex.column(), iData ) )
+        return  false;
+
+    emit dataChanged( iIndex, iIndex );
+
+    if( dynamic_cast< cDataItemCombattantBaseNode* >( item ) || dynamic_cast< cDataItemWeaponBaseNode* >( item ) )
+        emit dataChanged( index( 0, 0, iIndex ), index( 0, 1, iIndex ) );
+    else if( dynamic_cast< cDataItemCombattantName* >( item ) || dynamic_cast< cDataItemWeaponName* >( item ) )
+        emit dataChanged( iIndex.parent(), iIndex.parent() );
+
+
+    return  true;
+}
+

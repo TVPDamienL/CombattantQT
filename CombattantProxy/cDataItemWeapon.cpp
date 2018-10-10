@@ -41,8 +41,8 @@ cDataItemWeaponBaseNode::cDataItemWeaponBaseNode( cWeapon* iWeapon, cDataItem* i
 QVariant
 cDataItemWeaponBaseNode::GetDataAtIndex( int iIndex )
 {
-    if( iIndex != 0 )
-        return  "";
+    //if( iIndex != 0 )
+    //    return  "";
 
     return  QString( mWeapon->Name().c_str() );
 }
@@ -51,7 +51,8 @@ cDataItemWeaponBaseNode::GetDataAtIndex( int iIndex )
 bool
 cDataItemWeaponBaseNode::SetData( int iIndex, const QVariant & value )
 {
-    return  false;
+    mWeapon->Name( value.toString().toStdString() );
+    return  true;
 }
 
 
