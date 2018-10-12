@@ -57,6 +57,10 @@ list(REMOVE_DUPLICATES header_directories)
 set(${result_varname} ${header_directories} PARENT_SCOPE)
 endfunction(extract_include_dirs)
 
+# =====================================================================================================
+# =====================================================================================================
+# =====================================================================================================
+# =====================================================================================================
 
 file(GLOB_RECURSE COMBATTANTSQT_SRC_FILES RELATIVE "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/CombattantsQT/*.cpp")
 file(GLOB_RECURSE COMBATTANTSQT_HEADER_FILES RELATIVE "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/CombattantsQT/*.h*")
@@ -71,6 +75,10 @@ target_compile_definitions(${PROJECT_NAME}sQT PUBLIC ${Combattant_DEFINITIONS})
 target_include_directories(${PROJECT_NAME}sQT PUBLIC ${COMBATTANTSQT_INCLUDE_DIRECTORIES})
 target_link_libraries(${PROJECT_NAME}sQT Qt5::Core Qt5::Widgets)
 
+# =====================================================================================================
+# =====================================================================================================
+# =====================================================================================================
+# =====================================================================================================
 
 file(GLOB_RECURSE COMBATTANTMODEL_SRC_FILES RELATIVE "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/CombattantModelsInModels/*.cpp")
 file(GLOB_RECURSE COMBATTANTMODEL_HEADER_FILES RELATIVE "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/CombattantModelsInModels/*.h*")
@@ -85,6 +93,10 @@ target_compile_definitions(${PROJECT_NAME}WithModelsInModels PUBLIC ${Combattant
 target_include_directories(${PROJECT_NAME}WithModelsInModels PUBLIC ${COMBATTANTMODEL_INCLUDE_DIRECTORIES})
 target_link_libraries(${PROJECT_NAME}WithModelsInModels Qt5::Core Qt5::Widgets)
 
+# =====================================================================================================
+# =====================================================================================================
+# =====================================================================================================
+# =====================================================================================================
 
 file(GLOB_RECURSE COMBATTANTProxy_SRC_FILES RELATIVE "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/CombattantProxy/*.cpp")
 file(GLOB_RECURSE COMBATTANTProxy_HEADER_FILES RELATIVE "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/CombattantProxy/*.h*")
@@ -98,3 +110,21 @@ add_executable(${PROJECT_NAME}Proxy ${COMBATTANTProxy_SRC_FILES} ${COMBATTANTPro
 target_compile_definitions(${PROJECT_NAME}Proxy PUBLIC ${Combattant_DEFINITIONS})
 target_include_directories(${PROJECT_NAME}Proxy PUBLIC ${COMBATTANTProxy_INCLUDE_DIRECTORIES})
 target_link_libraries(${PROJECT_NAME}Proxy Qt5::Core Qt5::Widgets)
+
+# =====================================================================================================
+# =====================================================================================================
+# =====================================================================================================
+# =====================================================================================================
+
+file(GLOB_RECURSE COMBATTANTTreeFlatter_SRC_FILES RELATIVE "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/CombattantTreeFlatter/*.cpp")
+file(GLOB_RECURSE COMBATTANTTreeFlatter_HEADER_FILES RELATIVE "${CMAKE_SOURCE_DIR}" "${CMAKE_SOURCE_DIR}/CombattantTreeFlatter/*.h*")
+
+extract_include_dirs("${COMBATTANTTreeFlatter_HEADER_FILES}" COMBATTANTTreeFlatter_INCLUDE_DIRECTORIES)
+
+set( COMBATTANTTreeFlatter_INCLUDE_DIRECTORIES ${INCLUDE_DIRECTORIES} ${COMBATTANTTreeFlatter_INCLUDE_DIRECTORIES})
+
+set_source_files_properties(COMBATTANTTreeFlatter_HEADER_FILES PROPERTIES HEADER_FILE_ONLY TRUE)
+add_executable(${PROJECT_NAME}TreeFlatter ${COMBATTANTTreeFlatter_SRC_FILES} ${COMBATTANTTreeFlatter_HEADER_FILES})
+target_compile_definitions(${PROJECT_NAME}TreeFlatter PUBLIC ${Combattant_DEFINITIONS})
+target_include_directories(${PROJECT_NAME}TreeFlatter PUBLIC ${COMBATTANTTreeFlatter_INCLUDE_DIRECTORIES})
+target_link_libraries(${PROJECT_NAME}TreeFlatter Qt5::Core Qt5::Widgets)
