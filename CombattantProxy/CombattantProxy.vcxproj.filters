@@ -28,9 +28,6 @@
       <Extensions>moc;h;cpp</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
-    <Filter Include="Source Files\ButDeLexercice">
-      <UniqueIdentifier>{d64ef100-155d-4bc9-9fc2-ea7a23c51277}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Items">
       <UniqueIdentifier>{91b855c8-b56e-4acf-b094-6b69b11fffd7}</UniqueIdentifier>
     </Filter>
@@ -43,6 +40,9 @@
     <Filter Include="Source Files\Data">
       <UniqueIdentifier>{93b7a813-e4e0-48b0-8207-fa55f264894a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Proxy">
+      <UniqueIdentifier>{d64ef100-155d-4bc9-9fc2-ea7a23c51277}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -52,13 +52,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ProxyWeapon.cpp">
-      <Filter>Source Files\ButDeLexercice</Filter>
+      <Filter>Source Files\Proxy</Filter>
     </ClCompile>
     <ClCompile Include="proxytargetmodel.cpp">
-      <Filter>Source Files\ButDeLexercice</Filter>
+      <Filter>Source Files\Proxy</Filter>
     </ClCompile>
     <ClCompile Include="cProxyFilterSortBase.cpp">
-      <Filter>Source Files\ButDeLexercice</Filter>
+      <Filter>Source Files\Proxy</Filter>
     </ClCompile>
     <ClCompile Include="cDataItem.cpp">
       <Filter>Source Files\Items</Filter>
@@ -93,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cProxyFilterSortBase.h">
-      <Filter>Source Files\ButDeLexercice</Filter>
+      <Filter>Source Files\Proxy</Filter>
     </ClInclude>
     <ClInclude Include="cDataItem.h">
       <Filter>Source Files\Items</Filter>
@@ -131,10 +131,10 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="ProxyWeapon.h">
-      <Filter>Source Files\ButDeLexercice</Filter>
+      <Filter>Source Files\Proxy</Filter>
     </QtMoc>
     <QtMoc Include="proxytargetmodel.h">
-      <Filter>Source Files\ButDeLexercice</Filter>
+      <Filter>Source Files\Proxy</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

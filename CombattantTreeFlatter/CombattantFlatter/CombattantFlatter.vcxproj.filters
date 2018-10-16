@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
+      <Extensions>qrc;*</Extensions>
+      <ParseFiles>false</ParseFiles>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Source Files\Data">
+      <UniqueIdentifier>{86b48a8e-b083-41eb-978f-51e6dd705973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DataItem">
+      <UniqueIdentifier>{cb945b90-15e8-4d6f-82e5-d4ffe48c12ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{1b737885-6481-4bd4-8b10-4abe932fc3d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\View">
+      <UniqueIdentifier>{39372dc8-bc21-4b98-8135-f546fd6a779c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Data\combattant.cpp">
+      <Filter>Source Files\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DataItem\cDataItem.cpp">
+      <Filter>Source Files\DataItem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DataItem\cDataItemCombattant.cpp">
+      <Filter>Source Files\DataItem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DataItem\cDataItemModel.cpp">
+      <Filter>Source Files\DataItem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\DataItem\cDataItemWeapon.cpp">
+      <Filter>Source Files\DataItem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Model\cModelBase.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Model\combattantlistmodel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Model\cProxyFilterSortBase.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Model\proxytargetmodel.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Model\ProxyWeapon.cpp">
+      <Filter>Source Files\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\View\combattantview.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\View\cWeaponView.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\View\targetview.cpp">
+      <Filter>Source Files\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cMainWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Data\combattant.h">
+      <Filter>Source Files\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DataItem\cDataItemWeapon.h">
+      <Filter>Source Files\DataItem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DataItem\cDataItem.h">
+      <Filter>Source Files\DataItem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DataItem\cDataItemCombattant.h">
+      <Filter>Source Files\DataItem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\DataItem\cDataItemModel.h">
+      <Filter>Source Files\DataItem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Model\cModelBase.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Model\combattantlistmodel.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Model\cProxyFilterSortBase.h">
+      <Filter>Source Files\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\View\combattantview.h">
+      <Filter>Source Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\View\cWeaponView.h">
+      <Filter>Source Files\View</Filter>
+    </ClInclude>
+    <ClInclude Include="..\View\targetview.h">
+      <Filter>Source Files\View</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\cMainWindow.qrc">
+      <Filter>Source Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="..\Model\ProxyWeapon.h">
+      <Filter>Source Files\Model</Filter>
+    </QtMoc>
+    <QtMoc Include="..\Model\proxytargetmodel.h">
+      <Filter>Source Files\Model</Filter>
+    </QtMoc>
+    <QtMoc Include="..\cMainWindow.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="..\View\WeaponView.ui">
+      <Filter>Source Files\View</Filter>
+    </QtUic>
+    <QtUic Include="..\View\CombattantView.ui">
+      <Filter>Source Files\View</Filter>
+    </QtUic>
+    <QtUic Include="..\View\TargetView.ui">
+      <Filter>Source Files\View</Filter>
+    </QtUic>
+    <QtUic Include="..\cMainWindow.ui">
+      <Filter>Source Files</Filter>
+    </QtUic>
+  </ItemGroup>
+</Project>

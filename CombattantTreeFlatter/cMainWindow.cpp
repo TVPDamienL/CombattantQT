@@ -34,7 +34,6 @@ cMainWindow::BuildStuff()
     connect( ui.listCombattants->selectionModel(), &QItemSelectionModel::currentChanged, mProxyTargetModelExclude, &cProxyTargetModel::CurrentSelectedCombattant );
     connect( ui.listCombattants->selectionModel(), &QItemSelectionModel::currentChanged, this, &cMainWindow::CurrentCombattantChanged );
     connect( ui.listTargets->selectionModel(), &QItemSelectionModel::currentChanged, this, &cMainWindow::CurrentTargetChanged );
-
 }
 
 
@@ -44,6 +43,10 @@ cMainWindow::CurrentCombattantChanged( const QModelIndex & iCurrent, const QMode
     mProxyCombattantSelected->CurrentSelectedCombattant( iCurrent, iPrevious );
     mProxyTargetModelExclude->CurrentSelectedCombattant( iCurrent, iPrevious );
     ui.CombattantView->ShowCombattant( mProxyCombattantSelected );
+
+    QModelIndex test = mProxyCombattantSelected->mapFromSource( mCombattantListModel->index( 0, 0, QModelIndex() ) );
+    QModelIndex test2 = mProxyCombattantSelected->mapFromSource( mCombattantListModel->index( 1, 0, QModelIndex() ) );
+    int a;
 }
 
 

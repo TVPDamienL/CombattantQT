@@ -22,11 +22,6 @@ cWeaponProxy::CurrentSelectedCombattant( const QModelIndex& iCurrent, const QMod
 bool
 cWeaponProxy::filterAcceptsRow( int iSourceRow, const QModelIndex & iSourceParent ) const
 {
-    QModelIndex theRow = sourceModel()->index( iSourceRow, 0, iSourceParent );
-    auto tt =  theRow.internalPointer();
-    cDataItem* item = (cDataItem*)(tt);
-    auto  itemWeapon = dynamic_cast< cDataItemWeaponBase* >( item );
-
-    return( itemWeapon && iSourceParent.data() == mCurrentSelectedCombattant.data() );
+    return  ( iSourceParent.data() == mCurrentSelectedCombattant.data() );
 }
 

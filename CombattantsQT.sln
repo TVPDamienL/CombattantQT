@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CombattantModelsInModels", 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CombattantProxy", "CombattantProxy\CombattantProxy.vcxproj", "{50279ECD-717A-4FD4-A512-A5A172037DB9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CombattantFlatter", "CombattantTreeFlatter\CombattantFlatter\CombattantFlatter.vcxproj", "{28A04EE5-DC93-435A-9CA7-080306AF80B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -27,6 +29,10 @@ Global
 		{50279ECD-717A-4FD4-A512-A5A172037DB9}.Debug|x64.Build.0 = Debug|x64
 		{50279ECD-717A-4FD4-A512-A5A172037DB9}.Release|x64.ActiveCfg = Release|x64
 		{50279ECD-717A-4FD4-A512-A5A172037DB9}.Release|x64.Build.0 = Release|x64
+		{28A04EE5-DC93-435A-9CA7-080306AF80B6}.Debug|x64.ActiveCfg = Debug|x64
+		{28A04EE5-DC93-435A-9CA7-080306AF80B6}.Debug|x64.Build.0 = Debug|x64
+		{28A04EE5-DC93-435A-9CA7-080306AF80B6}.Release|x64.ActiveCfg = Release|x64
+		{28A04EE5-DC93-435A-9CA7-080306AF80B6}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
