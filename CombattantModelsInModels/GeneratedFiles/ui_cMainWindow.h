@@ -39,6 +39,7 @@ public:
     QLabel *label_2;
     QListView *listCombattants;
     QTreeView *treeView;
+    QTreeView *treeView_2;
     cCombattantView *CombattantView;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
@@ -88,6 +89,11 @@ public:
         treeView->setObjectName(QStringLiteral("treeView"));
 
         verticalLayout_2->addWidget(treeView);
+
+        treeView_2 = new QTreeView(centralWidget);
+        treeView_2->setObjectName(QStringLiteral("treeView_2"));
+
+        verticalLayout_2->addWidget(treeView_2);
 
 
         horizontalLayout_2->addLayout(verticalLayout_2);

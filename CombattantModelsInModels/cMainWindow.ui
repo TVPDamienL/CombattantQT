@@ -38,6 +38,9 @@
         <item>
          <widget class="QTreeView" name="treeView"/>
         </item>
+        <item>
+         <widget class="QTreeView" name="treeView_2"/>
+        </item>
        </layout>
       </item>
       <item>

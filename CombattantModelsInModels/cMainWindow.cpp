@@ -1,6 +1,7 @@
 #include "cMainWindow.h"
 
 #include "combattantlistmodel.h"
+#include "combattantmodel.h"
 #include "combattant.h"
 
 #include "proxytargetmodel.h"
@@ -44,6 +45,7 @@ void
 cMainWindow::CurrentCombattantChanged( const QModelIndex & iCurrent, const QModelIndex & iPrevious )
 {
     ui.CombattantView->ShowCombattant( mCombattantListModel->CombattantModelAtIndex( iCurrent ) );
+    ui.treeView_2->setModel( mCombattantListModel->CombattantModelAtIndex( iCurrent ) );
 }
 
 
