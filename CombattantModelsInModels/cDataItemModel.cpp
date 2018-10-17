@@ -1,12 +1,13 @@
 #include "cDataItemModel.h"
 
+#include "cModelBase.h"
 
 cDataItemModel::~cDataItemModel()
 {
 }
 
 
-cDataItemModel::cDataItemModel( QAbstractItemModel* iModel, cDataItem* iParent ) :
+cDataItemModel::cDataItemModel( cModelBase* iModel, cDataItem* iParent ) :
     tSuperClass( iParent ),
     mModel( iModel )
 {
@@ -16,7 +17,8 @@ cDataItemModel::cDataItemModel( QAbstractItemModel* iModel, cDataItem* iParent )
 cDataItem *
 cDataItemModel::Parent()
 {
-    return  tSuperClass::Parent();
+    return  tSuperClass::Parent(); // A model node is children from a standard node
+    // Transition is done on a model's rootitem, which is a normal node, maybe we need a modelRootNode
 }
 
 
@@ -106,4 +108,50 @@ void
 cDataItemModel::Exposed( bool iExposed )
 {
     mExposed = iExposed;
+}
+
+
+
+
+
+
+cDataItemModelRoot::~cDataItemModelRoot()
+{
+}
+
+cDataItemModelRoot::cDataItemModelRoot( cModelBase * iModel, cDataItem * iParent )
+{
+    mModel = iModel;
+}
+
+
+std::string
+cDataItemModelRoot::Type() const
+{
+    return  "NodeRootModel";
+}
+
+
+cDataItem*
+cDataItemModelRoot::Parent()
+{
+    if( mParentModel )
+        return  mParentModel->FindDataItemModelFromModel( mModel );
+
+    return  0;
+}
+
+const cDataItem * cDataItemModelRoot::Parent() const
+{
+    if( mParentModel )
+        return  mParentModel->FindDataItemModelFromModel( mModel );
+
+    return  0;
+}
+
+
+void
+cDataItemModelRoot::ParentModel( cModelBase * iModel )
+{
+    mParentModel = iModel;
 }

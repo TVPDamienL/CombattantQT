@@ -3,6 +3,7 @@
 #include "cModelBase.h"
 
 class cWeapon;
+class cDataItemWeapon;
 
 class cWeaponModel :
     public cModelBase
@@ -17,7 +18,12 @@ public:
 public:
     void  BuildData() override;
 
+    void  SetNewWeapon( cWeapon* iWeapon );
+
 public:
     cWeapon*  mWeapon;
+
+    cDataItemWeapon* nodeName;
+    cDataItemWeapon* nodeDmg;
 };
 

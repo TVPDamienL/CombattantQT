@@ -32,11 +32,13 @@ cDataItemWeapon::SetData( int iIndex, const QVariant & value )
     if( mWeapon && mData[ 0 ] == "WeaponName" )
     {
         mWeapon->Name( value.toString().toStdString() );
+        _DataChanged( this );
         return  true;
     }
     else if( mWeapon && mData[ 0 ] == "WeaponDamage" )
     {
         mWeapon->Damage( value.toInt() );
+        _DataChanged( this );
         return  true;
     }
 

@@ -3,8 +3,29 @@
 #include "cDataItemModel.h"
 
 
+
+/*   MEMO
+
+Le problème avec le fait que le model principal renvoie vers le sous model :
+if( iIndex.isValid() && iIndex.model() != this )
+    return  iIndex.model()->data( iIndex, iRole );
+
+
+est que lorsqu'on cherche à l'afficher dans un treeView, les branches des sous modeles vont avoir height = 0 car modelPrincipal != modelIndex.model();
+Il faut donc éviter, si on veut réutiliser les treeView, d'avoir le sous model qui créer les index
+
+
+
+
+
+*/
+
+
+
+
 cModelBase::~cModelBase()
 {
+    delete  mRootItem;
 }
 
 
@@ -21,18 +42,12 @@ cModelBase::index( int iRow, int iColumn, const QModelIndex & iParent ) const
     if( iParent.isValid() && iParent.column() != 0 )
         return  QModelIndex();
 
-    if( iParent.isValid() && iParent.model() != this )
-        return  iParent.model()->index( iRow, iColumn, iParent );
-
     cDataItem* theNode = ExtractDataItemFromIndex( iParent );
     cDataItem* childNode = theNode->ChildAtIndex( iRow );
 
-    // If the child node is a model node, and that model is exposed, we go to the model
-    auto  itemAsDataModel = dynamic_cast< cDataItemModel* >( theNode );
-    if( itemAsDataModel && itemAsDataModel->Exposed() )
-        return  itemAsDataModel->mModel->index( iRow, iColumn, QModelIndex() );
+    // Crashtest
+    childNode->DataCount();
 
-    // Otherwise, we use the usual children
     if( childNode )
         return  createIndex( iRow, iColumn, childNode );
 
@@ -46,23 +61,16 @@ cModelBase::parent( const QModelIndex & iParent ) const
     if( !iParent.isValid() )
         return  QModelIndex();
 
-    if( iParent.isValid() && iParent.model() != this )
-        return  iParent.model()->parent( iParent );
-
     cDataItem* theNode = ExtractDataItemFromIndex( iParent );
     cDataItem* theParent = theNode->Parent();
-    if( theParent == mRootItem )
-    {
-        auto  parentAsModel = dynamic_cast< cModelBase* >( QObject::parent() );
-        if( parentAsModel )
-        {
-            cDataItemModel* parentModelNode = parentAsModel->_FindDataItemModelFromModel( this );
-            if( parentModelNode && parentModelNode->Exposed() )
-                return  parentAsModel->DataItemToModelIndex( parentModelNode );
-        }
 
+    if( theParent == mRootItem )
         return  QModelIndex();
-    }
+    else if( theParent->Type() == "NodeRootModel" )
+        theParent = theParent->Parent();
+
+    if( theParent == nullptr )
+        int bp = 9;
 
     return  createIndex( theParent->IndexInParent(), 0, theParent );
 }
@@ -71,10 +79,6 @@ cModelBase::parent( const QModelIndex & iParent ) const
 int
 cModelBase::rowCount( const QModelIndex & iIndex ) const
 {
-    // No need to check this, as if we are not within the same model as iIndex's, the data extracted will ask its model if it's a dataModel anyway
-    //if( iIndex.isValid() && iIndex.model() != this )
-    //    return  iIndex.model()->rowCount( iIndex );
-
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
     return  data->ChildrenCount();
 
@@ -85,10 +89,6 @@ cModelBase::rowCount( const QModelIndex & iIndex ) const
 int
 cModelBase::columnCount( const QModelIndex & iIndex ) const
 {
-    // No need to check this, as if we are not within the same model as iIndex's, the data extracted will ask its model if it's a dataModel anyway
-    //if( iIndex.isValid() && iIndex.model() != this )
-    //    return  iIndex.model()->columnCount( iIndex );
-
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
     return  data->DataCount();
 
@@ -101,9 +101,6 @@ cModelBase::data( const QModelIndex & iIndex, int iRole ) const
 {
     if( !iIndex.isValid() )
         QVariant();
-
-    if( iIndex.isValid() && iIndex.model() != this )
-        return  iIndex.model()->data( iIndex, iRole );
 
     cDataItem* data = ExtractDataItemFromIndex( iIndex );
 
@@ -151,12 +148,6 @@ cModelBase::setData( const QModelIndex & iIndex, const QVariant & iData, int iRo
     if( iRole != Qt::EditRole )
         return  false;
 
-    if( iIndex.isValid() && iIndex.model() != this )
-    {
-        auto themodel = const_cast< QAbstractItemModel* >( iIndex.model() );
-        return  themodel->setData( iIndex, iData, iRole );
-    }
-
     cDataItem*  item = ExtractDataItemFromIndex( iIndex );
     bool  result = item->SetData( iIndex.column(), iData );
     if( result )
@@ -180,11 +171,13 @@ cModelBase::flags( const QModelIndex & iIndex ) const
 
 
 cDataItemModel *
-cModelBase::AddModelNode( QAbstractItemModel * iModel, cDataItem * iParent )
+cModelBase::AddModelNode( cModelBase * iModel, cDataItem * iParent )
 {
     auto newModelNode = new cDataItemModel( iModel, iParent );
     newModelNode->Exposed( true );
+
     iModel->setParent( this );
+    iModel->mRootItem->ParentModel( this );
 
     connect( iModel, &QAbstractItemModel::dataChanged, this, &cModelBase::ForceFullRefresh );
 
@@ -192,10 +185,16 @@ cModelBase::AddModelNode( QAbstractItemModel * iModel, cDataItem * iParent )
 }
 
 
-cDataItem*
-cModelBase::AddDataNode( cDataItem * iParent )
+void
+cModelBase::AddDataNode( cDataItem * iNode )
 {
-    return  new cDataItem( iParent );
+    iNode->ConnectToDataChanged( [ this ] ( cDataItem* iItem ) {
+
+        QModelIndex topLeft = _GetIndexFromNodeAtColumn( iItem, 0 );
+        QModelIndex bottomRigt = _GetIndexFromNodeAtColumn( iItem, iItem->DataCount() - 1 );
+        emit  dataChanged( topLeft, bottomRigt );
+
+    } );
 }
 
 
@@ -257,7 +256,7 @@ cModelBase::RootIndex() const
 
 
 cDataItemModel*
-cModelBase::_FindDataItemModelFromModel( const cModelBase * iModel )
+cModelBase::FindDataItemModelFromModel( const cModelBase * iModel )
 {
     for( int i = 0; i < mRootItem->ChildrenCount(); ++i )
     {
@@ -267,5 +266,12 @@ cModelBase::_FindDataItemModelFromModel( const cModelBase * iModel )
     }
 
     return  0;
+}
+
+
+QModelIndex
+cModelBase::_GetIndexFromNodeAtColumn( cDataItem* iItem, int iColumn )
+{
+    return  createIndex( iItem->IndexInParent(), iColumn, iItem );
 }
 

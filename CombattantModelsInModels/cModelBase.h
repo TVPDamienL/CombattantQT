@@ -6,6 +6,7 @@
 
 class cCombattant;
 class cDataItemModel;
+class cDataItemModelRoot;
 
 class cModelBase :
     public QAbstractItemModel
@@ -35,8 +36,8 @@ public:
 public:
     virtual     void        BuildData() = 0; // The only real method to reimplement
 
-    cDataItemModel*         AddModelNode( QAbstractItemModel* iModel, cDataItem* iParent );
-    cDataItem*              AddDataNode( cDataItem* iParent );
+    cDataItemModel*         AddModelNode( cModelBase* iModel, cDataItem* iParent );
+    void                    AddDataNode( cDataItem* iNode );
     cDataItem*              ExtractDataItemFromIndex( const QModelIndex& iIndex ) const;
     QModelIndex             DataItemToModelIndex( cDataItem* iDataItem ) const;
     QAbstractItemModel*     ExtractModelFromIndex( const QModelIndex& iIndex ) const;
@@ -44,10 +45,11 @@ public:
     void                    ForceFullRefresh();
 
     QModelIndex             RootIndex() const;
+    cDataItemModel*         FindDataItemModelFromModel( const cModelBase* iModel );
 
 private:
-    cDataItemModel*         _FindDataItemModelFromModel( const cModelBase* iModel );
+    QModelIndex             _GetIndexFromNodeAtColumn( cDataItem* iItem, int iColumn );
 
 protected:
-    cDataItem*  mRootItem;
+    cDataItemModelRoot*     mRootItem;
 };

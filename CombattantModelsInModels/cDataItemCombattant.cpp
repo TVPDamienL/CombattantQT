@@ -35,6 +35,7 @@ cDataItemCombattant::SetData( int iIndex, const QVariant & value )
     if( mData[ 0 ] == "CombattantName" )
     {
         mCombattant->Name( value.toString().toStdString() );
+        _DataChanged( this );
         return  true;
     }
     else if( mData[ 0 ] == "CombattantWeapon" )
@@ -44,6 +45,7 @@ cDataItemCombattant::SetData( int iIndex, const QVariant & value )
     else if( mData[ 0 ] == "CombattantShield" )
     {
         mCombattant->ShieldRating( value.toInt() );
+        _DataChanged( this );
         return  true;
     }
 

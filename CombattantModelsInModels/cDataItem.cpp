@@ -41,9 +41,9 @@ cDataItem::Parent() const
 int
 cDataItem::IndexInParent() const
 {
-    for( int i = 0; i < mParent->mChildren.size(); ++i )
+    for( int i = 0; i < Parent()->mChildren.size(); ++i )
     {
-        if( mParent->mChildren[ i ] == this )
+        if( Parent()->mChildren[ i ] == this )
             return  i;
     }
 
@@ -127,6 +127,7 @@ cDataItem::SetData( int iIndex, const QVariant & value )
         return  false;
 
     mData[ iIndex ] = value;
+    _DataChanged( this );
 
     return  true;
 }
@@ -153,5 +154,20 @@ cDataItem::FindDataItem( const cDataItem * iItem ) const
         return  this;
 
     return  0;
+}
+
+
+void
+cDataItem::ConnectToDataChanged( std::function<void( cDataItem* )> iCB )
+{
+    mCBList.push_back( iCB );
+}
+
+
+void
+cDataItem::_DataChanged( cDataItem * iItem )
+{
+    for( auto& cb : mCBList )
+        cb( iItem );
 }
 

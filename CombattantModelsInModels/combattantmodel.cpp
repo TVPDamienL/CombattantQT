@@ -27,8 +27,9 @@ cCombattantModel::setData( const QModelIndex& iIndex, const QVariant& iData, int
     {
         mCombattant->CurrentWeapon( iData.toString().toStdString() );
 
-        delete  mTheWeaponModelNode->mModel;
-        mTheWeaponModelNode->mModel = new  cWeaponModel( mCombattant->CurrentWeapon() );
+        auto weaponModel = dynamic_cast< cWeaponModel* >( mTheWeaponModelNode->mModel );
+        weaponModel->SetNewWeapon( mCombattant->CurrentWeapon() );
+
         emit dataChanged( iIndex, iIndex );
         return  true;
     }
@@ -40,7 +41,7 @@ cCombattantModel::setData( const QModelIndex& iIndex, const QVariant& iData, int
 void
 cCombattantModel::BuildData()
 {
-    mRootItem = new cDataItem();
+    mRootItem = new cDataItemModelRoot( this );
     mRootItem->AddData( "Name" );
     mRootItem->AddData( "Value" );
 

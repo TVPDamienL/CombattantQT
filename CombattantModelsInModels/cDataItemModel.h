@@ -4,6 +4,9 @@
 
 #include <QAbstractItemModel>
 
+
+class cModelBase;
+
 class cDataItemModel :
     public cDataItem
 {
@@ -11,8 +14,8 @@ public:
     typedef  cDataItem tSuperClass;
 
 public:
-    ~cDataItemModel();
-    cDataItemModel( QAbstractItemModel* iModel, cDataItem* iParent = 0 );
+    virtual  ~cDataItemModel();
+    cDataItemModel( cModelBase* iModel, cDataItem* iParent = 0 );
 
 public:
     virtual  cDataItem*         Parent() override;
@@ -34,7 +37,29 @@ public:
     void  Exposed( bool iExposed );
 
 public: // dirty quickcoding
-    QAbstractItemModel* mModel      = 0;
+    cModelBase*         mModel = 0;
     bool                mExposed    = false;
 };
+
+
+class  cDataItemModelRoot :
+    public cDataItem
+{
+public:
+    virtual  ~cDataItemModelRoot();
+    cDataItemModelRoot( cModelBase* iModel, cDataItem* iParent = 0 );
+
+public:
+    virtual  std::string        Type()  const   override;
+
+    virtual  cDataItem*         Parent() override;
+    virtual  const cDataItem*   Parent() const override;
+    void                        ParentModel( cModelBase* iModel );
+
+public:
+    cModelBase*  mParentModel = 0;
+    cModelBase*  mModel = 0;
+};
+
+
 

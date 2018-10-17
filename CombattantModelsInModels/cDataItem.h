@@ -34,10 +34,22 @@ public:
 
     const cDataItem*            FindDataItem( const cDataItem* iItem ) const;
 
+public:
+    // Callback
+    void  ConnectToDataChanged( std::function< void( cDataItem* ) > iCB );
+
+protected:
+    void  _DataChanged( cDataItem* iItem );
+
+signals:
+    void  dataChanged( cDataItem* iDataItem );
+
 protected:
     cDataItem*                  mParent = 0;
     std::vector< cDataItem* >   mChildren;
     QVariantList                mData;
 
     QIcon                       mIcon;
+
+    std::vector< std::function< void( cDataItem* ) > >  mCBList;
 };
