@@ -44,3 +44,10 @@ cDataItemWeapon::SetData( int iIndex, const QVariant & value )
 
     return  tSuperClass::SetData( iIndex, value );
 }
+
+
+int
+cDataItemWeapon::DataCount() const
+{
+    return  2;
+}

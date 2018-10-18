@@ -2,6 +2,7 @@
 
 #include "combattantlistmodel.h"
 #include "combattantmodel.h"
+#include "cWeaponModel.h"
 #include "combattant.h"
 
 #include "proxytargetmodel.h"
@@ -47,6 +48,7 @@ cMainWindow::CurrentCombattantChanged( const QModelIndex & iCurrent, const QMode
     auto combatModel = mCombattantListModel->CombattantModelAtIndex( iCurrent );
     ui.CombattantView->ShowCombattant( combatModel );
     ui.treeView_2->setModel( combatModel );
+    ui.treeView_3->setModel( combatModel->WeaponModel() );
 }
 
 

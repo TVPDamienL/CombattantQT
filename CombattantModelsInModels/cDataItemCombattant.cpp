@@ -51,3 +51,10 @@ cDataItemCombattant::SetData( int iIndex, const QVariant & value )
 
     return  tSuperClass::SetData( iIndex, value );
 }
+
+
+int
+cDataItemCombattant::DataCount() const
+{
+    return  2;
+}

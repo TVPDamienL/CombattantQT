@@ -177,7 +177,7 @@ cModelBase::AddModelNode( cModelBase * iModel, cDataItem * iParent )
     iModel->setParent( this );
     iModel->mRootItem->ParentModel( this );
 
-    connect( iModel, &QAbstractItemModel::dataChanged, this, &cModelBase::ForceFullRefresh );
+    connect( iModel, &QAbstractItemModel::dataChanged, this, &cModelBase::DataChangedModelNode );
 
     return  newModelNode;
 }
@@ -236,15 +236,14 @@ cModelBase::ExtractModelFromIndex( int iIndex ) const
 
 
 void
-cModelBase::ForceFullRefresh( const QModelIndex& Left, const QModelIndex& Right, const  QVector< int >& iRoles )
+cModelBase::DataChangedModelNode( const QModelIndex& Left, const QModelIndex& Right, const  QVector< int >& iRoles )
 {
     auto item = ExtractDataItemFromIndex( Left );
     if( item )
     {
         auto itemModel = FindDataItemModelFromModel( item->OwnerModel() );
         QModelIndex index = DataItemToModelIndex( itemModel );
-        QModelIndex indexC1 = index.siblingAtColumn( 1 );
-        emit  dataChanged( index, index.siblingAtColumn( 1 ) );
+        emit  dataChanged( index, index.siblingAtColumn( itemModel->DataCount() - 1 ) );
     }
 }
 

@@ -35,6 +35,27 @@ cCombattantListModel::BuildData()
 }
 
 
+bool
+cCombattantListModel::setData( const QModelIndex& iIndex, const QVariant& iData, int iRole )
+{
+    bool result = tSuperClass::setData( iIndex, iData, iRole );
+    if( !result )
+        return  false;
+
+    // If we change the model node, which displays and allow edition of combattant's name, which isn't the best in a tree thing,
+    // we need to inform the node name within combat model it changed, so we do just that here
+    auto item = ExtractDataItemFromIndex( iIndex );
+    auto itemCombattantModel = dynamic_cast< cDataItemModel* >( item );
+    if( itemCombattantModel )
+    {
+        auto combattantModel = itemCombattantModel->mModel;
+        combattantModel->dataChanged( combattantModel->index( 0, 0, QModelIndex() ), combattantModel->index( 0, 1, QModelIndex() ) );
+    }
+
+    return  result;
+}
+
+
 cCombattantModel*
 cCombattantListModel::CombattantModelAtIndex( const QModelIndex& iIndex )
 {

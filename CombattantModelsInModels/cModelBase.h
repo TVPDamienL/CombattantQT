@@ -42,7 +42,7 @@ public:
     QModelIndex             DataItemToModelIndex( cDataItem* iDataItem ) const;
     QAbstractItemModel*     ExtractModelFromIndex( const QModelIndex& iIndex ) const;
     QAbstractItemModel*     ExtractModelFromIndex( int iIndex ) const;
-    void                    ForceFullRefresh( const QModelIndex& Left, const QModelIndex& Right, const  QVector< int >& iRoles );
+    void                    DataChangedModelNode( const QModelIndex& Left, const QModelIndex& Right, const  QVector< int >& iRoles );
 
     QModelIndex             RootIndex() const;
     cDataItemModel*         FindDataItemModelFromModel( const cModelBase* iModel );
