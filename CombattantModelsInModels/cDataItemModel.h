@@ -15,7 +15,7 @@ public:
 
 public:
     virtual  ~cDataItemModel();
-    cDataItemModel( cModelBase* iModel, cDataItem* iParent = 0 );
+    cDataItemModel( cModelBase* iModel, cModelBase* iOwnerModel, cDataItem* iParent = 0 );
 
 public:
     virtual  cDataItem*         Parent() override;
@@ -37,7 +37,7 @@ public:
     void  Exposed( bool iExposed );
 
 public: // dirty quickcoding
-    cModelBase*         mModel = 0;
+    cModelBase*         mModel      = 0;
     bool                mExposed    = false;
 };
 
@@ -58,7 +58,6 @@ public:
 
 public:
     cModelBase*  mParentModel = 0;
-    cModelBase*  mModel = 0;
 };
 
 

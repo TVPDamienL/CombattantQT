@@ -2,13 +2,15 @@
 
 #include "cModelBase.h"
 
+
+
 cDataItemModel::~cDataItemModel()
 {
 }
 
 
-cDataItemModel::cDataItemModel( cModelBase* iModel, cDataItem* iParent ) :
-    tSuperClass( iParent ),
+cDataItemModel::cDataItemModel( cModelBase* iModel, cModelBase* iOwnerModel, cDataItem* iParent ) :
+    tSuperClass( iOwnerModel, iParent ),
     mModel( iModel )
 {
 }
@@ -119,9 +121,9 @@ cDataItemModelRoot::~cDataItemModelRoot()
 {
 }
 
-cDataItemModelRoot::cDataItemModelRoot( cModelBase * iModel, cDataItem * iParent )
+cDataItemModelRoot::cDataItemModelRoot( cModelBase * iModel, cDataItem * iParent ) :
+    cDataItem( iModel, iParent )
 {
-    mModel = iModel;
 }
 
 
@@ -136,7 +138,7 @@ cDataItem*
 cDataItemModelRoot::Parent()
 {
     if( mParentModel )
-        return  mParentModel->FindDataItemModelFromModel( mModel );
+        return  mParentModel->FindDataItemModelFromModel( mOwnerModel );
 
     return  0;
 }
@@ -144,7 +146,7 @@ cDataItemModelRoot::Parent()
 const cDataItem * cDataItemModelRoot::Parent() const
 {
     if( mParentModel )
-        return  mParentModel->FindDataItemModelFromModel( mModel );
+        return  mParentModel->FindDataItemModelFromModel( mOwnerModel );
 
     return  0;
 }

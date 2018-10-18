@@ -8,8 +8,8 @@ cDataItemCombattant::~cDataItemCombattant()
 }
 
 
-cDataItemCombattant::cDataItemCombattant( cCombattant* iCombattant, cDataItem* iParent ) :
-    tSuperClass( iParent ),
+cDataItemCombattant::cDataItemCombattant( cCombattant* iCombattant, cModelBase* iModel, cDataItem* iParent ) :
+    tSuperClass( iModel, iParent ),
     mCombattant( iCombattant )
 {
 }

@@ -39,9 +39,7 @@ cCombattantView::ShowCombattant( cCombattantModel* iCombattant )
     mMappy->addMapping( ui.lineEdit, 0 );
     mMappy->addMapping( ui.comboBox, 1, "currentText" );
 
-    mMappy->toFirst();
-
-    connect( mCombattantModel, &QAbstractItemModel::dataChanged, this, &cCombattantView::RefreshWeapon );
+    mMappy->setCurrentIndex( 1 );
 
     RefreshWeapon();
 }

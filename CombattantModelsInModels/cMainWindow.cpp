@@ -44,8 +44,9 @@ cMainWindow::BuildStuff()
 void
 cMainWindow::CurrentCombattantChanged( const QModelIndex & iCurrent, const QModelIndex & iPrevious )
 {
-    ui.CombattantView->ShowCombattant( mCombattantListModel->CombattantModelAtIndex( iCurrent ) );
-    ui.treeView_2->setModel( mCombattantListModel->CombattantModelAtIndex( iCurrent ) );
+    auto combatModel = mCombattantListModel->CombattantModelAtIndex( iCurrent );
+    ui.CombattantView->ShowCombattant( combatModel );
+    ui.treeView_2->setModel( combatModel );
 }
 
 

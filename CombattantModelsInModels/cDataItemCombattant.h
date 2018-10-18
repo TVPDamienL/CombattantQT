@@ -12,7 +12,7 @@ public:
 
 public:
     ~cDataItemCombattant();
-    cDataItemCombattant( cCombattant* iCombattant, cDataItem* iParent = 0 );
+    cDataItemCombattant( cCombattant* iCombattant, cModelBase* iModel, cDataItem* iParent = 0 );
 
 public:
     virtual  QVariant   GetDataAtIndex( int iIndex ) override;

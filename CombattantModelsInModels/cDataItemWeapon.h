@@ -12,7 +12,7 @@ public:
 
 public:
     ~cDataItemWeapon();
-    cDataItemWeapon( cWeapon* iWeapon, cDataItem* iParent = 0 );
+    cDataItemWeapon( cWeapon* iWeapon, cModelBase* iModel, cDataItem* iParent = 0 );
 
 public:
     virtual  QVariant   GetDataAtIndex( int iIndex ) override;

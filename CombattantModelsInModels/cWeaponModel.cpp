@@ -25,11 +25,13 @@ cWeaponModel::BuildData()
 
     if( mWeapon )
     {
-        nodeName = new cDataItemWeapon( mWeapon, mRootItem );
+        nodeName = new cDataItemWeapon( mWeapon, this, mRootItem );
         nodeName->AddData( "WeaponName" );
+        AddDataNode( nodeName );
 
-        nodeDmg = new cDataItemWeapon( mWeapon, mRootItem );
+        nodeDmg = new cDataItemWeapon( mWeapon, this, mRootItem );
         nodeDmg->AddData( "WeaponDamage" );
+        AddDataNode( nodeDmg );
     }
 }
 

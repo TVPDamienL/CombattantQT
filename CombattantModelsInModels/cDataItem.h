@@ -3,17 +3,21 @@
 #include <QIcon>
 #include <QVariant>
 
+class cModelBase;
+
 class cDataItem
 {
 public:
     virtual ~cDataItem();
-    cDataItem( cDataItem* iParent = 0 );
+    cDataItem( cModelBase* iOwnerModel, cDataItem* iParent = 0 );
 
 public:
     // Read
     virtual  cDataItem*         Parent();
     virtual  const cDataItem*   Parent() const;
     virtual  int                IndexInParent() const;
+
+    cModelBase*                 OwnerModel();
 
     virtual  QVariant           GetDataAtIndex( int iIndex );
     virtual  QString            GetToolTip() const;
@@ -46,6 +50,8 @@ signals:
 
 protected:
     cDataItem*                  mParent = 0;
+    cModelBase*                 mOwnerModel;
+
     std::vector< cDataItem* >   mChildren;
     QVariantList                mData;
 

@@ -13,8 +13,9 @@ cDataItem::~cDataItem()
 }
 
 
-cDataItem::cDataItem( cDataItem * iParent ) :
+cDataItem::cDataItem( cModelBase* iOwnerModel, cDataItem * iParent ) :
     mParent( iParent ),
+    mOwnerModel( iOwnerModel ),
     mChildren(),
     mData(),
     mIcon( "" )
@@ -48,6 +49,13 @@ cDataItem::IndexInParent() const
     }
 
     return  -1;
+}
+
+
+cModelBase*
+cDataItem::OwnerModel()
+{
+    return  mOwnerModel;
 }
 
 

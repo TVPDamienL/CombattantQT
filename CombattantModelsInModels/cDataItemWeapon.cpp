@@ -7,8 +7,8 @@ cDataItemWeapon::~cDataItemWeapon()
 }
 
 
-cDataItemWeapon::cDataItemWeapon( cWeapon* iWeapon, cDataItem* iParent ) :
-    tSuperClass( iParent ),
+cDataItemWeapon::cDataItemWeapon( cWeapon* iWeapon, cModelBase* iModel, cDataItem* iParent ) :
+    tSuperClass( iModel, iParent ),
     mWeapon( iWeapon )
 {
 }

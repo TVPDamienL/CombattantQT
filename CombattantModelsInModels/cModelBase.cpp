@@ -150,8 +150,6 @@ cModelBase::setData( const QModelIndex & iIndex, const QVariant & iData, int iRo
 
     cDataItem*  item = ExtractDataItemFromIndex( iIndex );
     bool  result = item->SetData( iIndex.column(), iData );
-    if( result )
-        emit dataChanged( iIndex, iIndex );
 
     return  result;
 }
@@ -170,10 +168,10 @@ cModelBase::flags( const QModelIndex & iIndex ) const
 }
 
 
-cDataItemModel *
+cDataItemModel*
 cModelBase::AddModelNode( cModelBase * iModel, cDataItem * iParent )
 {
-    auto newModelNode = new cDataItemModel( iModel, iParent );
+    auto newModelNode = new cDataItemModel( iModel, this, iParent );
     newModelNode->Exposed( true );
 
     iModel->setParent( this );
@@ -186,7 +184,7 @@ cModelBase::AddModelNode( cModelBase * iModel, cDataItem * iParent )
 
 
 void
-cModelBase::AddDataNode( cDataItem * iNode )
+cModelBase::AddDataNode( cDataItem* iNode )
 {
     iNode->ConnectToDataChanged( [ this ] ( cDataItem* iItem ) {
 
@@ -213,7 +211,7 @@ cModelBase::ExtractDataItemFromIndex( const QModelIndex & iIndex ) const
 
 
 QModelIndex
-cModelBase::DataItemToModelIndex( cDataItem * iDataItem ) const
+cModelBase::DataItemToModelIndex( cDataItem* iDataItem ) const
 {
     return  createIndex( iDataItem->IndexInParent(), 0, iDataItem );
 }
@@ -238,9 +236,16 @@ cModelBase::ExtractModelFromIndex( int iIndex ) const
 
 
 void
-cModelBase::ForceFullRefresh()
+cModelBase::ForceFullRefresh( const QModelIndex& Left, const QModelIndex& Right, const  QVector< int >& iRoles )
 {
-    dataChanged( QModelIndex(), QModelIndex() );
+    auto item = ExtractDataItemFromIndex( Left );
+    if( item )
+    {
+        auto itemModel = FindDataItemModelFromModel( item->OwnerModel() );
+        QModelIndex index = DataItemToModelIndex( itemModel );
+        QModelIndex indexC1 = index.siblingAtColumn( 1 );
+        emit  dataChanged( index, index.siblingAtColumn( 1 ) );
+    }
 }
 
 

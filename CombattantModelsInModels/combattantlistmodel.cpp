@@ -29,19 +29,9 @@ cCombattantListModel::BuildData()
     //    AddModelNode( new cCombattantModel( comb ), mRootItem );
 
     auto modelDoublon = new cCombattantModel( mCombattantList[ 0 ] );
-    //AddModelNode( modelDoublon, mRootItem );
     AddModelNode( modelDoublon, mRootItem );
-    //AddModelNode( new cCombattantModel( mCombattantList[ 1 ] ), mRootItem );
-
-    QModelIndex indexRoot;
-    QModelIndex indexCombattantModel = index( 0, 0, indexRoot );
-        QModelIndex indexCombattantName = index( 0, 0, indexCombattantModel );
-        QModelIndex indexCombattantWeaponModel = index( 1, 0, indexCombattantModel );
-            QModelIndex indexCombattantWeaponName = index( 0, 0, indexCombattantWeaponModel );
-            QModelIndex indexCombattantWeaponDmg = index( 1, 0, indexCombattantWeaponModel );
-        QModelIndex indexCombattantShield = index( 2, 0, indexCombattantModel );
-
-        int a = 0;
+    AddModelNode( modelDoublon, mRootItem );
+    AddModelNode( new cCombattantModel( mCombattantList[ 1 ] ), mRootItem );
 }
 
 

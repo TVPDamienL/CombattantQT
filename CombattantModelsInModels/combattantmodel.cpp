@@ -6,6 +6,7 @@
 #include "cDataItemModel.h"
 #include "cWeaponModel.h"
 
+
 cCombattantModel::~cCombattantModel()
 {
 }
@@ -45,13 +46,15 @@ cCombattantModel::BuildData()
     mRootItem->AddData( "Name" );
     mRootItem->AddData( "Value" );
 
-    auto nameItem = new cDataItemCombattant( mCombattant, mRootItem );
+    auto nameItem = new cDataItemCombattant( mCombattant, this, mRootItem );
     nameItem->AddData( "CombattantName" );
+    AddDataNode( nameItem );
 
     mTheWeaponModelNode = AddModelNode( new  cWeaponModel( mCombattant->CurrentWeapon() ), mRootItem );
 
-    auto shieldItem = new cDataItemCombattant( mCombattant, mRootItem );
+    auto shieldItem = new cDataItemCombattant( mCombattant, this, mRootItem );
     shieldItem->AddData( "CombattantShield" );
+    AddDataNode( shieldItem );
 }
 
 
