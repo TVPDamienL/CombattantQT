@@ -30,8 +30,8 @@ cCombattantListModel::BuildData()
 
     auto modelDoublon = new cCombattantModel( mCombattantList[ 0 ] );
     AddModelNode( modelDoublon, mRootItem );
-    AddModelNode( modelDoublon, mRootItem );
-    AddModelNode( new cCombattantModel( mCombattantList[ 1 ] ), mRootItem );
+    //AddModelNode( modelDoublon, mRootItem );
+    //AddModelNode( new cCombattantModel( mCombattantList[ 1 ] ), mRootItem );
 }
 
 

@@ -39,6 +39,10 @@ cMainWindow::BuildStuff()
     connect( ui.listTargets->selectionModel(), &QItemSelectionModel::currentChanged, this, &cMainWindow::CurrentTargetChanged );
 
     connect( ui.listCombattants->selectionModel(), &QItemSelectionModel::currentChanged, mProxyTargetModel, &cProxyTargetModel::CurrentSelectedCombattant );
+
+
+
+    ui.formView->setModel( mCombattantListModel );
 }
 
 

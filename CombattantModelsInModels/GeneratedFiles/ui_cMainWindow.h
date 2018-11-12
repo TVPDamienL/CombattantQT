@@ -11,7 +11,6 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -19,11 +18,11 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
-#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QTreeView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include "FormView.h"
 #include "combattantview.h"
 #include "targetview.h"
 
@@ -42,14 +41,13 @@ public:
     QTreeView *treeView_2;
     QTreeView *treeView_3;
     cCombattantView *CombattantView;
+    QVBoxLayout *verticalLayout_4;
+    FormView *formView;
     QHBoxLayout *horizontalLayout;
     QVBoxLayout *verticalLayout;
     QLabel *label;
     QListView *listTargets;
     cTargetView *TargetView;
-    QFrame *line;
-    QLabel *label_3;
-    QTextEdit *textEdit;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -58,7 +56,7 @@ public:
     {
         if (cMainWindowClass->objectName().isEmpty())
             cMainWindowClass->setObjectName(QStringLiteral("cMainWindowClass"));
-        cMainWindowClass->resize(748, 659);
+        cMainWindowClass->resize(1083, 860);
         centralWidget = new QWidget(cMainWindowClass);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout_3 = new QVBoxLayout(centralWidget);
@@ -114,6 +112,17 @@ public:
 
         horizontalLayout_2->addWidget(CombattantView);
 
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        formView = new FormView(centralWidget);
+        formView->setObjectName(QStringLiteral("formView"));
+
+        verticalLayout_4->addWidget(formView);
+
+
+        horizontalLayout_2->addLayout(verticalLayout_4);
+
 
         verticalLayout_3->addLayout(horizontalLayout_2);
 
@@ -148,29 +157,10 @@ public:
 
         verticalLayout_3->addLayout(horizontalLayout);
 
-        line = new QFrame(centralWidget);
-        line->setObjectName(QStringLiteral("line"));
-        line->setFrameShape(QFrame::HLine);
-        line->setFrameShadow(QFrame::Sunken);
-
-        verticalLayout_3->addWidget(line);
-
-        label_3 = new QLabel(centralWidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        sizePolicy.setHeightForWidth(label_3->sizePolicy().hasHeightForWidth());
-        label_3->setSizePolicy(sizePolicy);
-
-        verticalLayout_3->addWidget(label_3);
-
-        textEdit = new QTextEdit(centralWidget);
-        textEdit->setObjectName(QStringLiteral("textEdit"));
-
-        verticalLayout_3->addWidget(textEdit);
-
         cMainWindowClass->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(cMainWindowClass);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 748, 21));
+        menuBar->setGeometry(QRect(0, 0, 1083, 21));
         cMainWindowClass->setMenuBar(menuBar);
         mainToolBar = new QToolBar(cMainWindowClass);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -189,7 +179,6 @@ public:
         cMainWindowClass->setWindowTitle(QApplication::translate("cMainWindowClass", "cMainWindow", nullptr));
         label_2->setText(QApplication::translate("cMainWindowClass", "Combattants", nullptr));
         label->setText(QApplication::translate("cMainWindowClass", "Targets", nullptr));
-        label_3->setText(QApplication::translate("cMainWindowClass", "Battle history", nullptr));
     } // retranslateUi
 
 };

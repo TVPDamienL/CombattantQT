@@ -17,10 +17,13 @@ cDataItemWeapon::cDataItemWeapon( cWeapon* iWeapon, cModelBase* iModel, cDataIte
 QVariant
 cDataItemWeapon::GetDataAtIndex( int iIndex )
 {
-    if( mWeapon && mData[ 0 ] == "WeaponName" )
-        return  QString( mWeapon->Name().c_str() );
-    else if( mWeapon && mData[ 0 ] == "WeaponDamage" )
-        return  mWeapon->Damage();
+    if( iIndex == 1 )
+    {
+        if( mWeapon && mData[ 0 ] == "WeaponName" )
+            return  QString( mWeapon->Name().c_str() );
+        else if( mWeapon && mData[ 0 ] == "WeaponDamage" )
+            return  mWeapon->Damage();
+    }
 
     return tSuperClass::GetDataAtIndex( iIndex );
 }

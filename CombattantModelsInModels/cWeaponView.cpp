@@ -27,5 +27,5 @@ cWeaponView::ShowWeapon( cWeaponModel* iWeapon )
     mMappy->clearMapping();
     mMappy->addMapping( ui.spinBox, 1 );
 
-    mMappy->toFirst();
+    mMappy->setCurrentIndex( 1 );
 }

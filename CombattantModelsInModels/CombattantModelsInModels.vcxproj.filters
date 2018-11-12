@@ -134,6 +134,9 @@
     <ClCompile Include="proxytargetmodel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FormView.cpp">
+      <Filter>Source Files\Views</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="cMainWindow.h">
@@ -141,6 +144,9 @@
     </QtMoc>
     <QtMoc Include="proxytargetmodel.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="FormView.h">
+      <Filter>Header Files\Views</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

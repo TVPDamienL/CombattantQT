@@ -56,7 +56,7 @@ cCombattant::cCombattant() :
     mCurrentWeapon( 0 ),
     mShieldRating( 0 )
 {
-    mWeapon0 = new cWeapon( "None", 1 );
+    mWeapon0 = new cWeapon( "None", 66 );
     mWeapon1 = new cWeapon( "Dagger", 2 );
     mWeapon2 = new cWeapon( "Sword", 6 );
     mWeapon3 = new cWeapon( "Pike", 12 );

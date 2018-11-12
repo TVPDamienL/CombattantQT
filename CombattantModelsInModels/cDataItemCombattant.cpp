@@ -18,12 +18,15 @@ cDataItemCombattant::cDataItemCombattant( cCombattant* iCombattant, cModelBase* 
 QVariant
 cDataItemCombattant::GetDataAtIndex( int iIndex )
 {
-    if( mData[ 0 ] == "CombattantName" )
-        return  QString( mCombattant->Name().c_str() );
-    else if( mData[ 0 ] == "CombattantWeapon" )
-        return  QString( mCombattant->CurrentWeapon()->Name().c_str() );
-    else if( mData[ 0 ] == "CombattantShield" )
-        return  mCombattant->ShieldRating();
+    if( iIndex == 1 )
+    {
+        if( mData[ 0 ] == "CombattantName" )
+            return  QString( mCombattant->Name().c_str() );
+        else if( mData[ 0 ] == "CombattantWeapon" )
+            return  QString( mCombattant->CurrentWeapon()->Name().c_str() );
+        else if( mData[ 0 ] == "CombattantShield" )
+            return  mCombattant->ShieldRating();
+    }
 
     return tSuperClass::GetDataAtIndex( iIndex );
 }

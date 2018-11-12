@@ -41,12 +41,6 @@ cCombattantView::ShowCombattant( cCombattantModel* iCombattant )
 
     mMappy->setCurrentIndex( 1 );
 
-    RefreshWeapon();
-}
-
-void
-cCombattantView::RefreshWeapon()
-{
     ui.widget->ShowWeapon( mCombattantModel->WeaponModel() );
 }
 

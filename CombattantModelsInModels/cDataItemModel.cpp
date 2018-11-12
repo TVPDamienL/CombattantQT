@@ -19,8 +19,8 @@ cDataItemModel::cDataItemModel( cModelBase* iModel, cModelBase* iOwnerModel, cDa
 cDataItem *
 cDataItemModel::Parent()
 {
+    // Transition is done on a model's rootitem
     return  tSuperClass::Parent(); // A model node is children from a standard node
-    // Transition is done on a model's rootitem, which is a normal node, maybe we need a modelRootNode
 }
 
 

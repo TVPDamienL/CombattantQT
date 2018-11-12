@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>748</width>
-    <height>659</height>
+    <width>1083</width>
+    <height>860</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -56,6 +56,13 @@
         </property>
        </widget>
       </item>
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="FormView" name="formView" native="true"/>
+        </item>
+       </layout>
+      </item>
      </layout>
     </item>
     <item>
@@ -92,29 +99,6 @@
       </item>
      </layout>
     </item>
-    <item>
-     <widget class="Line" name="line">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label_3">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="text">
-       <string>Battle history</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QTextEdit" name="textEdit"/>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -122,7 +106,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>748</width>
+     <width>1083</width>
      <height>21</height>
     </rect>
    </property>
@@ -149,6 +133,12 @@
    <class>cTargetView</class>
    <extends>QWidget</extends>
    <header>targetview.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>FormView</class>
+   <extends>QWidget</extends>
+   <header>FormView.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

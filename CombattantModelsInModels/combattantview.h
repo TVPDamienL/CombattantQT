@@ -21,9 +21,6 @@ public slots:
     void  ShowCombattant( cCombattantModel* iCombattant);
 
 private:
-    void  RefreshWeapon();
-
-private:
     Ui::CombattantView  ui;
     cCombattantModel*   mCombattantModel;
     QDataWidgetMapper*  mMappy;
